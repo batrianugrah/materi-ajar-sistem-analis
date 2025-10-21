@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 3: Teknik Elisitasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .technique-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .technique-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .pros-cons {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .pros, .reveal .cons {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .pros {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .cons {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .technique-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .technique-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .technique-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .matrix-table {
+            overflow-x: auto;
+        }
+        .reveal .matrix-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .matrix-table th,
+        .reveal .matrix-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .matrix-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 3</h1>
+                <h2>Menentukan Teknik Elisitasi yang Sesuai</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.003.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Memahami berbagai teknik elisitasi requirements</li>
+                    <li class="fragment">Memilih teknik elisitasi yang sesuai dengan konteks</li>
+                    <li class="fragment">Melakukan elisitasi requirements secara efektif</li>
+                    <li class="fragment">Mendokumentasikan hasil elisitasi</li>
+                </ul>
+            </section>
+
+            <!-- Pengertian Elisitasi -->
+            <section>
+                <h2>Pengertian Elisitasi</h2>
+                <div class="technique-card">
+                    <p><strong>Elisitasi</strong> adalah proses mengumpulkan, mengidentifikasi, dan mendokumentasikan kebutuhan sistem dari stakeholder.</p>
+                </div>
+            </section>
+
+            <!-- Teknik Elisitasi Overview -->
+            <section>
+                <h2>Teknik Elisitasi Requirements</h2>
+                <div class="technique-grid">
+                    <div class="technique-item">
+                        <h5>📋 Interview</h5>
+                        <p>One-on-one atau group interview</p>
+                    </div>
+                    <div class="technique-item">
+                        <h5>👥 Workshop/Focus Group</h5>
+                        <p>Multiple stakeholders, collaborative</p>
+                    </div>
+                    <div class="technique-item">
+                        <h5>👀 Observation</h5>
+                        <p>Direct observation of work processes</p>
+                    </div>
+                    <div class="technique-item">
+                        <h5>🎨 Prototyping</h5>
+                        <p>Visual representation of system</p>
+                    </div>
+                    <div class="technique-item">
+                        <h5>📊 Survey/Questionnaire</h5>
+                        <p>Structured questions, large audience</p>
+                    </div>
+                    <div class="technique-item">
+                        <h5>📄 Document Analysis</h5>
+                        <p>Review existing documentation</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interview Technique -->
+            <section>
+                <h2>Interview (Wawancara)</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>One-on-one atau group interview</li>
+                        <li>Structured, semi-structured, atau unstructured</li>
+                        <li>Face-to-face atau virtual</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>Stakeholder dengan waktu terbatas</li>
+                        <li>Kebutuhan detail dan spesifik</li>
+                        <li>Sensitive information</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Interview Pros & Cons -->
+            <section>
+                <h2>Interview - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Mendalam dan detail</li>
+                            <li>Fleksibel dalam pertanyaan</li>
+                            <li>Personal interaction</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Time consuming</li>
+                            <li>Biased responses</li>
+                            <li>Limited to one perspective</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workshop Technique -->
+            <section>
+                <h2>Workshop/Focus Group</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>Multiple stakeholders</li>
+                        <li>Facilitated discussion</li>
+                        <li>Collaborative approach</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>Complex requirements</li>
+                        <li>Multiple perspectives needed</li>
+                        <li>Conflict resolution</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Workshop Pros & Cons -->
+            <section>
+                <h2>Workshop - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Multiple viewpoints</li>
+                            <li>Collaborative decision making</li>
+                            <li>Faster than individual interviews</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Dominant personalities</li>
+                            <li>Group think</li>
+                            <li>Scheduling challenges</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Observation Technique -->
+            <section>
+                <h2>Observation</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>Direct observation of work processes</li>
+                        <li>Passive atau active participation</li>
+                        <li>Contextual understanding</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>Current system analysis</li>
+                        <li>Process understanding</li>
+                        <li>Gap identification</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Observation Pros & Cons -->
+            <section>
+                <h2>Observation - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Real-world context</li>
+                            <li>Uncover hidden requirements</li>
+                            <li>Objective data</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Hawthorne effect</li>
+                            <li>Time consuming</li>
+                            <li>Limited scope</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prototyping Technique -->
+            <section>
+                <h2>Prototyping</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>Visual representation of system</li>
+                        <li>Interactive mockups</li>
+                        <li>Rapid feedback</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>UI/UX requirements</li>
+                        <li>Complex workflows</li>
+                        <li>User validation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Prototyping Pros & Cons -->
+            <section>
+                <h2>Prototyping - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Visual clarity</li>
+                            <li>Early feedback</li>
+                            <li>User engagement</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Time and resource intensive</li>
+                            <li>May limit creativity</li>
+                            <li>Technical constraints</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Survey Technique -->
+            <section>
+                <h2>Survey/Questionnaire</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>Structured questions</li>
+                        <li>Large audience</li>
+                        <li>Quantitative data</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>Large user base</li>
+                        <li>Standardized information</li>
+                        <li>Statistical analysis</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Survey Pros & Cons -->
+            <section>
+                <h2>Survey - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Scalable</li>
+                            <li>Anonymous feedback</li>
+                            <li>Quantitative data</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Limited depth</li>
+                            <li>Low response rate</li>
+                            <li>No clarification possible</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Document Analysis -->
+            <section>
+                <h2>Document Analysis</h2>
+                <div class="technique-card">
+                    <h4>Karakteristik</h4>
+                    <ul>
+                        <li>Review existing documentation</li>
+                        <li>Process maps, policies, procedures</li>
+                        <li>Historical data</li>
+                    </ul>
+                    
+                    <h4>Kapan Digunakan</h4>
+                    <ul>
+                        <li>Understanding current state</li>
+                        <li>Compliance requirements</li>
+                        <li>Historical context</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Document Analysis Pros & Cons -->
+            <section>
+                <h2>Document Analysis - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Keunggulan</h4>
+                        <ul>
+                            <li>Comprehensive view</li>
+                            <li>Historical perspective</li>
+                            <li>Objective data</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kelemahan</h4>
+                        <ul>
+                            <li>Outdated information</li>
+                            <li>May not reflect reality</li>
+                            <li>Time consuming</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pemilihan Teknik -->
+            <section>
+                <h2>Pemilihan Teknik Elisitasi</h2>
+                <h3>Faktor Pemilihan:</h3>
+                <ul>
+                    <li class="fragment"><strong>Stakeholder Characteristics</strong>
+                        <ul>
+                            <li>Availability</li>
+                            <li>Technical knowledge</li>
+                            <li>Communication preferences</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Project Context</strong>
+                        <ul>
+                            <li>Timeline</li>
+                            <li>Budget</li>
+                            <li>Complexity</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Requirements Type -->
+            <section>
+                <h2>Requirements Type</h2>
+                <ul>
+                    <li class="fragment"><strong>Functional vs Non-functional</strong></li>
+                    <li class="fragment"><strong>Explicit vs Implicit</strong></li>
+                    <li class="fragment"><strong>Current vs Future</strong></li>
+                </ul>
+            </section>
+
+            <!-- Matrix Pemilihan -->
+            <section>
+                <h2>Matrix Pemilihan Teknik</h2>
+                <div class="matrix-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Teknik</th>
+                                <th>Stakeholder</th>
+                                <th>Time</th>
+                                <th>Cost</th>
+                                <th>Complexity</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Interview</td>
+                                <td>Individual</td>
+                                <td>High</td>
+                                <td>Medium</td>
+                                <td>Any</td>
+                                <td>Detailed requirements</td>
+                            </tr>
+                            <tr>
+                                <td>Workshop</td>
+                                <td>Group</td>
+                                <td>Medium</td>
+                                <td>High</td>
+                                <td>High</td>
+                                <td>Complex requirements</td>
+                            </tr>
+                            <tr>
+                                <td>Observation</td>
+                                <td>Individual</td>
+                                <td>High</td>
+                                <td>High</td>
+                                <td>Medium</td>
+                                <td>Process understanding</td>
+                            </tr>
+                            <tr>
+                                <td>Prototyping</td>
+                                <td>Group</td>
+                                <td>High</td>
+                                <td>High</td>
+                                <td>High</td>
+                                <td>UI/UX requirements</td>
+                            </tr>
+                            <tr>
+                                <td>Survey</td>
+                                <td>Many</td>
+                                <td>Low</td>
+                                <td>Low</td>
+                                <td>Low</td>
+                                <td>Standardized info</td>
+                            </tr>
+                            <tr>
+                                <td>Document Analysis</td>
+                                <td>Individual</td>
+                                <td>Medium</td>
+                                <td>Low</td>
+                                <td>Any</td>
+                                <td>Current state analysis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Teknik Selection</h4>
+                    <p><strong>Tugas:</strong> Pilih teknik elisitasi untuk setiap stakeholder dalam proyek perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Analisis karakteristik setiap stakeholder</li>
+                        <li>Pilih teknik yang paling sesuai</li>
+                        <li>Buat justifikasi pemilihan</li>
+                        <li>Rencanakan jadwal elisitasi</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Interview Planning</h4>
+                    <p><strong>Tugas:</strong> Buat rencana interview dengan librarian</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Tentukan tujuan interview</li>
+                        <li>Buat daftar pertanyaan (structured)</li>
+                        <li>Siapkan materials (notepad, recording)</li>
+                        <li>Rencanakan follow-up</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Workshop Design</h4>
+                    <p><strong>Tugas:</strong> Design workshop untuk gathering requirements dari multiple stakeholders</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Tentukan participants</li>
+                        <li>Buat agenda workshop</li>
+                        <li>Siapkan facilitation techniques</li>
+                        <li>Plan for conflict resolution</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Elisitasi Plan</h2>
+                <p>Elisitasi Strategy untuk <strong>Sistem Perpustakaan</strong>:</p>
+            </section>
+
+            <!-- Librarian Strategy -->
+            <section>
+                <h2>1. Librarian (Primary User)</h2>
+                <div class="technique-card">
+                    <h4>Teknik: Interview + Observation</h4>
+                    <p><strong>Durasi:</strong> 2 jam interview + 4 jam observation</p>
+                    <p><strong>Fokus:</strong> Daily workflows, pain points, efficiency needs</p>
+                </div>
+            </section>
+
+            <!-- Library Manager Strategy -->
+            <section>
+                <h2>2. Library Manager (Business Owner)</h2>
+                <div class="technique-card">
+                    <h4>Teknik: Interview + Document Analysis</h4>
+                    <p><strong>Durasi:</strong> 1.5 jam interview</p>
+                    <p><strong>Fokus:</strong> Business objectives, reporting needs, compliance</p>
+                </div>
+            </section>
+
+            <!-- Students Strategy -->
+            <section>
+                <h2>3. Students/Members (End Users)</h2>
+                <div class="technique-card">
+                    <h4>Teknik: Survey + Focus Group</h4>
+                    <p><strong>Durasi:</strong> Survey (1 week) + 2 focus groups (1.5 jam each)</p>
+                    <p><strong>Fokus:</strong> User experience, feature preferences, usability</p>
+                </div>
+            </section>
+
+            <!-- IT Support Strategy -->
+            <section>
+                <h2>4. IT Support (Technical)</h2>
+                <div class="technique-card">
+                    <h4>Teknik: Interview + Document Analysis</h4>
+                    <p><strong>Durasi:</strong> 1 jam interview</p>
+                    <p><strong>Fokus:</strong> Technical constraints, integration needs, maintenance</p>
+                </div>
+            </section>
+
+            <!-- Elisitasi Schedule -->
+            <section>
+                <h2>Elisitasi Schedule</h2>
+                <ul>
+                    <li class="fragment"><strong>Week 1:</strong> Document analysis, survey distribution</li>
+                    <li class="fragment"><strong>Week 2:</strong> Individual interviews</li>
+                    <li class="fragment"><strong>Week 3:</strong> Focus groups, observation sessions</li>
+                    <li class="fragment"><strong>Week 4:</strong> Workshop with all stakeholders</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 3</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Elisitasi Plan</strong> - Rencana lengkap elisitasi</li>
+                        <li><strong>Interview Guide</strong> - Panduan wawancara</li>
+                        <li><strong>Workshop Agenda</strong> - Agenda workshop</li>
+                        <li><strong>Survey Questions</strong> - Kuesioner untuk user</li>
+                        <li><strong>Observation Checklist</strong> - Checklist observasi</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu menjelaskan minimal 5 teknik elisitasi</li>
+                        <li>Mampu memilih teknik yang sesuai dengan konteks</li>
+                        <li>Mampu membuat interview guide</li>
+                        <li>Mampu merencanakan workshop</li>
+                        <li>Mampu membuat survey questions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Engineering Techniques</a></li>
+                    <li><a href="https://www.iiba.org/babok-guide.aspx" target="_blank">Business Analysis Body of Knowledge (BABOK)</a></li>
+                    <li><a href="https://www.agilealliance.org/" target="_blank">Agile Requirements Gathering</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-02-identifikasi-sumber-kebutuhan.html">← Unit 2 - Identifikasi Sumber Kebutuhan</a></p>
+                <p><a href="unit-04-klasifikasi-alokasi-kebutuhan.html">Unit 4 - Klasifikasi Alokasi Kebutuhan →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

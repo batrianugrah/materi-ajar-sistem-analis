@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 8: Spesifikasi Kebutuhan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .requirement-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .requirement-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .functional-nonfunctional {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .functional, .reveal .nonfunctional {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .functional {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .nonfunctional {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .business-rules {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .business-rules h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .constraints-assumptions {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .constraints, .reveal .assumptions {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .constraints {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .assumptions {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+        }
+        .reveal .validation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .validation-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .validation-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 8</h1>
+                <h2>Menyusun Spesifikasi Kebutuhan Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.008.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Membuat functional requirements yang detail</li>
+                    <li class="fragment">Membuat non-functional requirements yang komprehensif</li>
+                    <li class="fragment">Mendefinisikan business rules yang jelas</li>
+                    <li class="fragment">Mengidentifikasi constraints dan assumptions</li>
+                    <li class="fragment">Membuat requirements validation yang efektif</li>
+                </ul>
+            </section>
+
+            <!-- Functional Requirements -->
+            <section>
+                <h2>Functional Requirements</h2>
+                <div class="requirement-card">
+                    <h4>Karakteristik Functional Requirements</h4>
+                    <ul>
+                        <li><strong>Behavioral:</strong> Mendeskripsikan apa yang sistem lakukan</li>
+                        <li><strong>Specific:</strong> Spesifik dan tidak ambigu</li>
+                        <li><strong>Testable:</strong> Dapat diuji dan divalidasi</li>
+                        <li><strong>Complete:</strong> Lengkap dan konsisten</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Format Functional Requirements -->
+            <section>
+                <h2>Format Functional Requirements</h2>
+                <div class="requirement-card">
+                    <h4>Template</h4>
+                    <p><strong>The system shall [action] [condition] [result]</strong></p>
+                </div>
+                
+                <h3>Contoh:</h3>
+                <ul>
+                    <li class="fragment">The system shall allow users to search books by title, author, or ISBN</li>
+                    <li class="fragment">The system shall calculate fines automatically when books are overdue</li>
+                    <li class="fragment">The system shall send email notifications when reserved books are available</li>
+                </ul>
+            </section>
+
+            <!-- Kategori Functional Requirements -->
+            <section>
+                <h2>Kategori Functional Requirements</h2>
+                <div class="functional-nonfunctional">
+                    <div class="functional">
+                        <h4>User Interface Requirements</h4>
+                        <ul>
+                            <li>Layout dan navigation</li>
+                            <li>Input validation</li>
+                            <li>Error handling</li>
+                            <li>User feedback</li>
+                        </ul>
+                    </div>
+                    <div class="nonfunctional">
+                        <h4>Business Logic Requirements</h4>
+                        <ul>
+                            <li>Business rules</li>
+                            <li>Calculations</li>
+                            <li>Workflows</li>
+                            <li>Validations</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More Categories -->
+            <section>
+                <h2>Kategori Functional Requirements (Lanjutan)</h2>
+                <h3>Data Requirements</h3>
+                <ul>
+                    <li class="fragment">Data input</li>
+                    <li class="fragment">Data processing</li>
+                    <li class="fragment">Data output</li>
+                    <li class="fragment">Data storage</li>
+                </ul>
+                
+                <h3>Integration Requirements</h3>
+                <ul>
+                    <li class="fragment">External systems</li>
+                    <li class="fragment">APIs</li>
+                    <li class="fragment">Data exchange</li>
+                    <li class="fragment">Protocols</li>
+                </ul>
+            </section>
+
+            <!-- Non-Functional Requirements -->
+            <section>
+                <h2>Non-Functional Requirements</h2>
+                <h3>Performance Requirements</h3>
+                <ul>
+                    <li class="fragment"><strong>Response Time:</strong> Page load time < 2 seconds</li>
+                    <li class="fragment"><strong>Throughput:</strong> Support 100 concurrent users</li>
+                    <li class="fragment"><strong>Scalability:</strong> Horizontal scaling capability</li>
+                </ul>
+            </section>
+
+            <!-- Security Requirements -->
+            <section>
+                <h2>Security Requirements</h2>
+                <h3>Authentication</h3>
+                <ul>
+                    <li class="fragment">User login/logout</li>
+                    <li class="fragment">Password policies</li>
+                    <li class="fragment">Session management</li>
+                    <li class="fragment">Multi-factor authentication</li>
+                </ul>
+                
+                <h3>Authorization</h3>
+                <ul>
+                    <li class="fragment">Role-based access control</li>
+                    <li class="fragment">Permission management</li>
+                    <li class="fragment">Resource access control</li>
+                    <li class="fragment">Audit logging</li>
+                </ul>
+            </section>
+
+            <!-- Usability Requirements -->
+            <section>
+                <h2>Usability Requirements</h2>
+                <h3>User Interface</h3>
+                <ul>
+                    <li class="fragment">Intuitive navigation</li>
+                    <li class="fragment">Consistent design</li>
+                    <li class="fragment">Responsive layout</li>
+                    <li class="fragment">Accessibility compliance</li>
+                </ul>
+                
+                <h3>User Experience</h3>
+                <ul>
+                    <li class="fragment">Easy to learn</li>
+                    <li class="fragment">Efficient to use</li>
+                    <li class="fragment">Error prevention</li>
+                    <li class="fragment">Help system</li>
+                </ul>
+            </section>
+
+            <!-- Reliability Requirements -->
+            <section>
+                <h2>Reliability Requirements</h2>
+                <h3>Availability</h3>
+                <ul>
+                    <li class="fragment">99.9% uptime</li>
+                    <li class="fragment">24/7 operation</li>
+                    <li class="fragment">Maintenance windows</li>
+                    <li class="fragment">Disaster recovery</li>
+                </ul>
+                
+                <h3>Fault Tolerance</h3>
+                <ul>
+                    <li class="fragment">Error handling</li>
+                    <li class="fragment">Graceful degradation</li>
+                    <li class="fragment">Recovery procedures</li>
+                    <li class="fragment">Backup systems</li>
+                </ul>
+            </section>
+
+            <!-- Business Rules -->
+            <section>
+                <h2>Business Rules</h2>
+                <div class="business-rules">
+                    <h4>Definisi Business Rules</h4>
+                    <p>Business rules adalah aturan bisnis yang mengatur bagaimana sistem beroperasi dalam konteks bisnis.</p>
+                </div>
+            </section>
+
+            <!-- Kategori Business Rules -->
+            <section>
+                <h2>Kategori Business Rules</h2>
+                <h3>Data Rules</h3>
+                <ul>
+                    <li class="fragment">Data validation rules</li>
+                    <li class="fragment">Data integrity rules</li>
+                    <li class="fragment">Data format rules</li>
+                    <li class="fragment">Data relationship rules</li>
+                </ul>
+                
+                <h3>Process Rules</h3>
+                <ul>
+                    <li class="fragment">Workflow rules</li>
+                    <li class="fragment">Approval rules</li>
+                    <li class="fragment">Notification rules</li>
+                    <li class="fragment">Escalation rules</li>
+                </ul>
+            </section>
+
+            <!-- Policy Rules -->
+            <section>
+                <h2>Policy Rules</h2>
+                <ul>
+                    <li class="fragment">Security policies</li>
+                    <li class="fragment">Access policies</li>
+                    <li class="fragment">Compliance policies</li>
+                    <li class="fragment">Operational policies</li>
+                </ul>
+            </section>
+
+            <!-- Format Business Rules -->
+            <section>
+                <h2>Format Business Rules</h2>
+                <div class="business-rules">
+                    <h4>Template</h4>
+                    <p><strong>If [condition], then [action]</strong></p>
+                </div>
+                
+                <h3>Contoh:</h3>
+                <ul>
+                    <li class="fragment">If a student has overdue books, then they cannot borrow new books</li>
+                    <li class="fragment">If a book is reserved, then it cannot be borrowed by other students</li>
+                    <li class="fragment">If a student returns a book late, then a fine is calculated</li>
+                </ul>
+            </section>
+
+            <!-- Constraints dan Assumptions -->
+            <section>
+                <h2>Constraints dan Assumptions</h2>
+                <div class="constraints-assumptions">
+                    <div class="constraints">
+                        <h4>Constraints</h4>
+                        <ul>
+                            <li>Technical Constraints</li>
+                            <li>Business Constraints</li>
+                            <li>Environmental Constraints</li>
+                        </ul>
+                    </div>
+                    <div class="assumptions">
+                        <h4>Assumptions</h4>
+                        <ul>
+                            <li>Technical Assumptions</li>
+                            <li>Business Assumptions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Constraints -->
+            <section>
+                <h2>Technical Constraints</h2>
+                <ul>
+                    <li class="fragment">Technology limitations</li>
+                    <li class="fragment">Performance constraints</li>
+                    <li class="fragment">Security constraints</li>
+                    <li class="fragment">Integration constraints</li>
+                </ul>
+            </section>
+
+            <!-- Business Constraints -->
+            <section>
+                <h2>Business Constraints</h2>
+                <ul>
+                    <li class="fragment">Budget limitations</li>
+                    <li class="fragment">Timeline constraints</li>
+                    <li class="fragment">Resource constraints</li>
+                    <li class="fragment">Regulatory constraints</li>
+                </ul>
+            </section>
+
+            <!-- Requirements Validation -->
+            <section>
+                <h2>Requirements Validation</h2>
+                <div class="validation-grid">
+                    <div class="validation-item">
+                        <h5>Review</h5>
+                        <ul>
+                            <li>Peer review</li>
+                            <li>Stakeholder review</li>
+                            <li>Expert review</li>
+                            <li>Cross-reference check</li>
+                        </ul>
+                    </div>
+                    <div class="validation-item">
+                        <h5>Testing</h5>
+                        <ul>
+                            <li>Unit testing</li>
+                            <li>Integration testing</li>
+                            <li>System testing</li>
+                            <li>User acceptance testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prototyping -->
+            <section>
+                <h2>Prototyping</h2>
+                <ul>
+                    <li class="fragment">UI prototyping</li>
+                    <li class="fragment">Workflow prototyping</li>
+                    <li class="fragment">Data flow prototyping</li>
+                    <li class="fragment">Integration prototyping</li>
+                </ul>
+            </section>
+
+            <!-- Validation Criteria -->
+            <section>
+                <h2>Validation Criteria</h2>
+                <h3>Completeness</h3>
+                <ul>
+                    <li class="fragment">All requirements covered</li>
+                    <li class="fragment">No missing requirements</li>
+                    <li class="fragment">Complete coverage</li>
+                    <li class="fragment">No gaps</li>
+                </ul>
+                
+                <h3>Consistency</h3>
+                <ul>
+                    <li class="fragment">No conflicting requirements</li>
+                    <li class="fragment">Consistent terminology</li>
+                    <li class="fragment">Consistent format</li>
+                    <li class="fragment">Consistent level of detail</li>
+                </ul>
+            </section>
+
+            <!-- Correctness -->
+            <section>
+                <h2>Correctness</h2>
+                <ul>
+                    <li class="fragment">Accurate requirements</li>
+                    <li class="fragment">Correct understanding</li>
+                    <li class="fragment">Proper implementation</li>
+                    <li class="fragment">Valid assumptions</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Functional Requirements</h4>
+                    <p><strong>Tugas:</strong> Buat functional requirements untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi fitur-fitur utama</li>
+                        <li>Tulis functional requirements untuk setiap fitur</li>
+                        <li>Kategorikan berdasarkan jenis</li>
+                        <li>Validasi completeness dan consistency</li>
+                        <li>Buat requirements document</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Non-Functional Requirements</h4>
+                    <p><strong>Tugas:</strong> Buat non-functional requirements yang komprehensif</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi performance requirements</li>
+                        <li>Identifikasi security requirements</li>
+                        <li>Identifikasi usability requirements</li>
+                        <li>Identifikasi reliability requirements</li>
+                        <li>Buat non-functional requirements document</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Business Rules</h4>
+                    <p><strong>Tugas:</strong> Definisikan business rules untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi business processes</li>
+                        <li>Definisikan business rules</li>
+                        <li>Kategorikan berdasarkan jenis</li>
+                        <li>Validasi dengan stakeholders</li>
+                        <li>Buat business rules document</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Requirements Validation</h4>
+                    <p><strong>Tugas:</strong> Lakukan validation requirements</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Review requirements completeness</li>
+                        <li>Check requirements consistency</li>
+                        <li>Validate requirements correctness</li>
+                        <li>Test requirements dengan stakeholders</li>
+                        <li>Buat validation report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Spesifikasi Kebutuhan</h2>
+                <p>Functional Requirements untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- User Management -->
+            <section>
+                <h2>1. User Management</h2>
+                <h3>REQ-F-001: User Registration</h3>
+                <ul>
+                    <li>The system shall allow new users to register with email and password</li>
+                    <li>The system shall validate email format and password strength</li>
+                    <li>The system shall send confirmation email after registration</li>
+                </ul>
+                
+                <h3>REQ-F-002: User Authentication</h3>
+                <ul>
+                    <li>The system shall authenticate users with username and password</li>
+                    <li>The system shall support role-based access control</li>
+                    <li>The system shall maintain user sessions with timeout</li>
+                </ul>
+            </section>
+
+            <!-- Book Management -->
+            <section>
+                <h2>2. Book Management</h2>
+                <h3>REQ-F-004: Book Search</h3>
+                <ul>
+                    <li>The system shall allow users to search books by title, author, ISBN</li>
+                    <li>The system shall support advanced search with multiple criteria</li>
+                    <li>The system shall display search results with pagination</li>
+                </ul>
+                
+                <h3>REQ-F-005: Book Catalog</h3>
+                <ul>
+                    <li>The system shall maintain a catalog of all books</li>
+                    <li>The system shall support book categorization</li>
+                    <li>The system shall display book details including availability</li>
+                </ul>
+            </section>
+
+            <!-- Book Borrowing -->
+            <section>
+                <h2>3. Book Borrowing</h2>
+                <h3>REQ-F-006: Book Borrowing</h3>
+                <ul>
+                    <li>The system shall allow students to borrow books</li>
+                    <li>The system shall check borrowing limits and book availability</li>
+                    <li>The system shall set due dates automatically</li>
+                </ul>
+            </section>
+
+            <!-- Reservation System -->
+            <section>
+                <h2>4. Reservation System</h2>
+                <h3>REQ-F-007: Book Reservation</h3>
+                <ul>
+                    <li>The system shall allow students to reserve books</li>
+                    <li>The system shall maintain reservation queue</li>
+                    <li>The system shall notify students when reserved books are available</li>
+                </ul>
+                
+                <h3>REQ-F-008: Reservation Management</h3>
+                <ul>
+                    <li>The system shall allow students to cancel reservations</li>
+                    <li>The system shall automatically cancel expired reservations</li>
+                    <li>The system shall maintain reservation history</li>
+                </ul>
+            </section>
+
+            <!-- Fine Management -->
+            <section>
+                <h2>5. Fine Management</h2>
+                <h3>REQ-F-009: Fine Calculation</h3>
+                <ul>
+                    <li>The system shall calculate fines for overdue books</li>
+                    <li>The system shall apply different fine rates for different book types</li>
+                    <li>The system shall track fine payment history</li>
+                </ul>
+                
+                <h3>REQ-F-010: Fine Payment</h3>
+                <ul>
+                    <li>The system shall allow students to pay fines online</li>
+                    <li>The system shall process fine payments securely</li>
+                    <li>The system shall update fine status after payment</li>
+                </ul>
+            </section>
+
+            <!-- Non-Functional Requirements -->
+            <section>
+                <h2>Non-Functional Requirements</h2>
+                <h3>Performance Requirements</h3>
+                <ul>
+                    <li>Response time < 2 seconds</li>
+                    <li>Support 100 concurrent users</li>
+                    <li>Handle 1000 transactions per hour</li>
+                    <li>Process 10,000 books in database</li>
+                </ul>
+            </section>
+
+            <!-- Security Requirements -->
+            <section>
+                <h2>Security Requirements</h2>
+                <h3>Authentication</h3>
+                <ul>
+                    <li>Secure authentication</li>
+                    <li>Password policies</li>
+                    <li>Session management</li>
+                </ul>
+                
+                <h3>Authorization</h3>
+                <ul>
+                    <li>Role-based access control</li>
+                    <li>Permission-based access</li>
+                    <li>Audit logs</li>
+                </ul>
+            </section>
+
+            <!-- Usability Requirements -->
+            <section>
+                <h2>Usability Requirements</h2>
+                <h3>User Interface</h3>
+                <ul>
+                    <li>Intuitive user interface</li>
+                    <li>Accessible via web browser</li>
+                    <li>Mobile device support</li>
+                </ul>
+                
+                <h3>User Experience</h3>
+                <ul>
+                    <li>Easy to learn and use</li>
+                    <li>Helpful error messages</li>
+                    <li>Help documentation</li>
+                </ul>
+            </section>
+
+            <!-- Reliability Requirements -->
+            <section>
+                <h2>Reliability Requirements</h2>
+                <h3>Availability</h3>
+                <ul>
+                    <li>99.9% uptime</li>
+                    <li>24/7 operation</li>
+                    <li>Maintenance windows</li>
+                </ul>
+                
+                <h3>Fault Tolerance</h3>
+                <ul>
+                    <li>Handle errors gracefully</li>
+                    <li>Provide fallback mechanisms</li>
+                    <li>Implement recovery procedures</li>
+                </ul>
+            </section>
+
+            <!-- Business Rules -->
+            <section>
+                <h2>Business Rules</h2>
+                <h3>Borrowing Rules</h3>
+                <ul>
+                    <li>BR-001: If a student has overdue books, then they cannot borrow new books</li>
+                    <li>BR-002: If a student has reached borrowing limit, then they cannot borrow more books</li>
+                    <li>BR-003: If a book is reserved, then it cannot be borrowed by other students</li>
+                </ul>
+            </section>
+
+            <!-- Fine Rules -->
+            <section>
+                <h2>Fine Rules</h2>
+                <ul>
+                    <li class="fragment">BR-004: If a book is returned late, then a fine is calculated based on days overdue</li>
+                    <li class="fragment">BR-005: If a student has unpaid fines, then they cannot borrow new books</li>
+                    <li class="fragment">BR-006: If a fine is not paid within 30 days, then the student account is blocked</li>
+                </ul>
+            </section>
+
+            <!-- Reservation Rules -->
+            <section>
+                <h2>Reservation Rules</h2>
+                <ul>
+                    <li class="fragment">BR-007: If a book is available, then it cannot be reserved</li>
+                    <li class="fragment">BR-008: If a reservation is not claimed within 3 days, then it is automatically cancelled</li>
+                    <li class="fragment">BR-009: If a student has active reservations, then they cannot reserve more books</li>
+                </ul>
+            </section>
+
+            <!-- Constraints -->
+            <section>
+                <h2>Constraints</h2>
+                <h3>Technical Constraints</h3>
+                <ul>
+                    <li>TC-001: System must be web-based and accessible via standard browsers</li>
+                    <li>TC-002: System must support PostgreSQL database</li>
+                    <li>TC-003: System must be deployable on Linux servers</li>
+                    <li>TC-004: System must support HTTPS encryption</li>
+                </ul>
+            </section>
+
+            <!-- Business Constraints -->
+            <section>
+                <h2>Business Constraints</h2>
+                <ul>
+                    <li class="fragment">BC-001: Development budget is limited to $50,000</li>
+                    <li class="fragment">BC-002: System must be delivered within 6 months</li>
+                    <li class="fragment">BC-003: System must support maximum 1000 users</li>
+                    <li class="fragment">BC-004: System must comply with university IT policies</li>
+                </ul>
+            </section>
+
+            <!-- Assumptions -->
+            <section>
+                <h2>Assumptions</h2>
+                <ul>
+                    <li class="fragment">A-001: Users have basic computer literacy</li>
+                    <li class="fragment">A-002: Internet connection is available</li>
+                    <li class="fragment">A-003: Users have valid email addresses</li>
+                    <li class="fragment">A-004: University network is secure</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 8</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Functional Requirements Document</strong> - Requirements fungsional lengkap</li>
+                        <li><strong>Non-Functional Requirements Document</strong> - Requirements non-fungsional</li>
+                        <li><strong>Business Rules Document</strong> - Aturan bisnis yang jelas</li>
+                        <li><strong>Constraints and Assumptions Document</strong> - Constraints dan assumptions</li>
+                        <li><strong>Requirements Validation Report</strong> - Laporan validasi requirements</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu membuat functional requirements yang detail</li>
+                        <li>Mampu membuat non-functional requirements yang komprehensif</li>
+                        <li>Mampu mendefinisikan business rules yang jelas</li>
+                        <li>Mampu mengidentifikasi constraints dan assumptions</li>
+                        <li>Mampu melakukan requirements validation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ieee.org/" target="_blank">IEEE 830 - Software Requirements Specification</a></li>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Engineering Best Practices</a></li>
+                    <li><a href="https://www.businessrulesgroup.org/" target="_blank">Business Rules Management</a></li>
+                    <li><a href="https://www.omg.org/" target="_blank">Non-Functional Requirements</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-07-software-environment.html">← Unit 7 - Software Environment</a></p>
+                <p><a href="unit-09-review-kebutuhan.html">Unit 9 - Review Kebutuhan →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

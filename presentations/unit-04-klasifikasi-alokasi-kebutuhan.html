@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 4: Klasifikasi Alokasi Kebutuhan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .classification-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .classification-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .moscow-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .moscow-item {
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .reveal .must-have {
+            background: #ffebee;
+            border: 2px solid #f44336;
+        }
+        .reveal .should-have {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+        .reveal .could-have {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+        }
+        .reveal .wont-have {
+            background: #f5f5f5;
+            border: 2px solid #9e9e9e;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .component-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .component-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .traceability-table {
+            overflow-x: auto;
+        }
+        .reveal .traceability-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .traceability-table th,
+        .reveal .traceability-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .traceability-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 4</h1>
+                <h2>Melakukan Klasifikasi dan Alokasi Kebutuhan Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.004.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Mengklasifikasi kebutuhan berdasarkan kategori dan prioritas</li>
+                    <li class="fragment">Melakukan alokasi kebutuhan ke komponen sistem</li>
+                    <li class="fragment">Membuat traceability matrix</li>
+                    <li class="fragment">Mengelola dependencies antar kebutuhan</li>
+                </ul>
+            </section>
+
+            <!-- Klasifikasi Kebutuhan -->
+            <section>
+                <h2>Klasifikasi Kebutuhan</h2>
+                <ul>
+                    <li class="fragment">Berdasarkan Jenis</li>
+                    <li class="fragment">Berdasarkan Prioritas</li>
+                    <li class="fragment">Berdasarkan Sumber</li>
+                </ul>
+            </section>
+
+            <!-- Berdasarkan Jenis -->
+            <section>
+                <h2>Berdasarkan Jenis</h2>
+                <div class="classification-card">
+                    <h4>Functional Requirements</h4>
+                    <ul>
+                        <li>Fitur yang harus disediakan sistem</li>
+                        <li>Input-output yang diharapkan</li>
+                        <li>Behavior sistem</li>
+                    </ul>
+                </div>
+                <div class="classification-card">
+                    <h4>Non-Functional Requirements</h4>
+                    <ul>
+                        <li>Performance (response time, throughput)</li>
+                        <li>Security (authentication, authorization)</li>
+                        <li>Usability (user interface, accessibility)</li>
+                        <li>Reliability (availability, fault tolerance)</li>
+                        <li>Scalability (capacity planning)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Berdasarkan Prioritas -->
+            <section>
+                <h2>Berdasarkan Prioritas - MoSCoW</h2>
+                <div class="moscow-grid">
+                    <div class="moscow-item must-have">
+                        <h4>Must Have</h4>
+                        <p>Critical, system tidak bisa berfungsi tanpa ini</p>
+                    </div>
+                    <div class="moscow-item should-have">
+                        <h4>Should Have</h4>
+                        <p>Important, system bisa berfungsi tapi kurang optimal</p>
+                    </div>
+                    <div class="moscow-item could-have">
+                        <h4>Could Have</h4>
+                        <p>Nice to have, meningkatkan user experience</p>
+                    </div>
+                    <div class="moscow-item wont-have">
+                        <h4>Won't Have</h4>
+                        <p>Tidak akan diimplementasi dalam release ini</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Berdasarkan Sumber -->
+            <section>
+                <h2>Berdasarkan Sumber</h2>
+                <ul>
+                    <li class="fragment"><strong>Business Requirements:</strong>
+                        <ul>
+                            <li>Strategic objectives</li>
+                            <li>Business rules</li>
+                            <li>Compliance requirements</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>User Requirements:</strong>
+                        <ul>
+                            <li>User stories</li>
+                            <li>Use cases</li>
+                            <li>User scenarios</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>System Requirements:</strong>
+                        <ul>
+                            <li>Technical specifications</li>
+                            <li>Integration requirements</li>
+                            <li>Performance requirements</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Alokasi Kebutuhan -->
+            <section>
+                <h2>Alokasi Kebutuhan</h2>
+                <h3>Komponen Sistem</h3>
+                <div class="component-grid">
+                    <div class="component-item">
+                        <h5>Presentation Layer</h5>
+                        <ul>
+                            <li>User Interface</li>
+                            <li>User Experience</li>
+                            <li>Input validation</li>
+                        </ul>
+                    </div>
+                    <div class="component-item">
+                        <h5>Business Logic Layer</h5>
+                        <ul>
+                            <li>Business rules</li>
+                            <li>Workflow</li>
+                            <li>Calculations</li>
+                        </ul>
+                    </div>
+                    <div class="component-item">
+                        <h5>Data Access Layer</h5>
+                        <ul>
+                            <li>Database operations</li>
+                            <li>Data validation</li>
+                            <li>Data transformation</li>
+                        </ul>
+                    </div>
+                    <div class="component-item">
+                        <h5>Integration Layer</h5>
+                        <ul>
+                            <li>External APIs</li>
+                            <li>Third-party services</li>
+                            <li>Legacy systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traceability Matrix -->
+            <section>
+                <h2>Traceability Matrix</h2>
+                <div class="traceability-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Source</th>
+                                <th>Component</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Test Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REQ-001</td>
+                                <td>User Story</td>
+                                <td>UI</td>
+                                <td>Must</td>
+                                <td>Approved</td>
+                                <td>TC-001</td>
+                            </tr>
+                            <tr>
+                                <td>REQ-002</td>
+                                <td>Business Rule</td>
+                                <td>Business Logic</td>
+                                <td>Should</td>
+                                <td>Pending</td>
+                                <td>TC-002</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Dependencies Management -->
+            <section>
+                <h2>Dependencies Management</h2>
+                <h3>Jenis Dependencies</h3>
+                <ul>
+                    <li class="fragment"><strong>Functional Dependencies:</strong>
+                        <ul>
+                            <li>Requirement A harus diimplementasi sebelum Requirement B</li>
+                            <li>Sequential implementation</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Technical Dependencies:</strong>
+                        <ul>
+                            <li>Infrastructure requirements</li>
+                            <li>Third-party integrations</li>
+                            <li>Database schema</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Resource Dependencies:</strong>
+                        <ul>
+                            <li>Skill requirements</li>
+                            <li>External resources</li>
+                            <li>Budget allocation</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Requirements Classification</h4>
+                    <p><strong>Tugas:</strong> Klasifikasi requirements untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Kategorikan requirements berdasarkan jenis (Functional/Non-functional)</li>
+                        <li>Tentukan prioritas menggunakan MoSCoW</li>
+                        <li>Identifikasi sumber requirements</li>
+                        <li>Buat classification matrix</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Component Allocation</h4>
+                    <p><strong>Tugas:</strong> Alokasi requirements ke komponen sistem</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi komponen sistem</li>
+                        <li>Alokasi setiap requirement ke komponen</li>
+                        <li>Identifikasi dependencies</li>
+                        <li>Buat allocation matrix</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Traceability Matrix</h4>
+                    <p><strong>Tugas:</strong> Buat traceability matrix lengkap</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Assign unique ID untuk setiap requirement</li>
+                        <li>Link requirements dengan source</li>
+                        <li>Map ke komponen sistem</li>
+                        <li>Link dengan test cases</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Requirements Classification</h2>
+                <p>Functional Requirements untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- Must Have Requirements -->
+            <section>
+                <h2>Must Have (Critical)</h2>
+                <ol>
+                    <li class="fragment"><strong>User Authentication</strong> - Login/logout, role-based access</li>
+                    <li class="fragment"><strong>Book Search</strong> - Search by title, author, ISBN</li>
+                    <li class="fragment"><strong>Book Borrowing</strong> - Check-out, check-in process</li>
+                    <li class="fragment"><strong>User Management</strong> - Add/edit/delete users</li>
+                    <li class="fragment"><strong>Inventory Management</strong> - Add/edit/delete books</li>
+                </ol>
+            </section>
+
+            <!-- Should Have Requirements -->
+            <section>
+                <h2>Should Have (Important)</h2>
+                <ol>
+                    <li class="fragment"><strong>Reservation System</strong> - Book reservation, notification</li>
+                    <li class="fragment"><strong>Fine Management</strong> - Calculate and track fines</li>
+                    <li class="fragment"><strong>Reporting</strong> - Usage statistics, overdue reports</li>
+                    <li class="fragment"><strong>Book Categories</strong> - Genre classification</li>
+                    <li class="fragment"><strong>User History</strong> - Borrowing history</li>
+                </ol>
+            </section>
+
+            <!-- Could Have Requirements -->
+            <section>
+                <h2>Could Have (Nice to Have)</h2>
+                <ol>
+                    <li class="fragment"><strong>Recommendation System</strong> - Book suggestions</li>
+                    <li class="fragment"><strong>Mobile App</strong> - Mobile interface</li>
+                    <li class="fragment"><strong>Social Features</strong> - Reviews, ratings</li>
+                    <li class="fragment"><strong>Advanced Search</strong> - Filters, sorting options</li>
+                    <li class="fragment"><strong>Integration</strong> - External library systems</li>
+                </ol>
+            </section>
+
+            <!-- Non-Functional Requirements -->
+            <section>
+                <h2>Non-Functional Requirements</h2>
+                <h3>Performance</h3>
+                <ul>
+                    <li>Response time < 2 seconds</li>
+                    <li>Support 100 concurrent users</li>
+                    <li>99.9% uptime</li>
+                </ul>
+                
+                <h3>Security</h3>
+                <ul>
+                    <li>Role-based access control</li>
+                    <li>Data encryption</li>
+                    <li>Audit logging</li>
+                </ul>
+            </section>
+
+            <!-- Component Allocation -->
+            <section>
+                <h2>Component Allocation</h2>
+                <h3>Presentation Layer</h3>
+                <ul>
+                    <li>User Interface (UI/UX)</li>
+                    <li>Input validation</li>
+                    <li>Error handling</li>
+                </ul>
+                
+                <h3>Business Logic Layer</h3>
+                <ul>
+                    <li>Authentication logic</li>
+                    <li>Borrowing rules</li>
+                    <li>Fine calculation</li>
+                    <li>Search algorithms</li>
+                </ul>
+            </section>
+
+            <!-- More Component Allocation -->
+            <section>
+                <h2>Component Allocation (Lanjutan)</h2>
+                <h3>Data Access Layer</h3>
+                <ul>
+                    <li>Database operations</li>
+                    <li>Data validation</li>
+                    <li>Data transformation</li>
+                </ul>
+                
+                <h3>Integration Layer</h3>
+                <ul>
+                    <li>Email notifications</li>
+                    <li>External APIs</li>
+                    <li>File uploads</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 4</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Requirements Classification Matrix</strong> - Klasifikasi lengkap requirements</li>
+                        <li><strong>Component Allocation Matrix</strong> - Alokasi ke komponen</li>
+                        <li><strong>Traceability Matrix</strong> - Mapping requirements</li>
+                        <li><strong>Dependencies Diagram</strong> - Visualisasi dependencies</li>
+                        <li><strong>Prioritization Report</strong> - Justifikasi prioritas</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu mengklasifikasi requirements berdasarkan jenis</li>
+                        <li>Mampu menentukan prioritas menggunakan MoSCoW</li>
+                        <li>Mampu mengalokasi requirements ke komponen</li>
+                        <li>Mampu membuat traceability matrix</li>
+                        <li>Mampu mengidentifikasi dependencies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Engineering Best Practices</a></li>
+                    <li><a href="https://www.agilealliance.org/glossary/moscow/" target="_blank">MoSCoW Prioritization</a></li>
+                    <li><a href="https://www.pmi.org/learning/library/requirements-traceability-6080" target="_blank">Traceability in Requirements</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-03-teknik-elisitasi.html">← Unit 3 - Teknik Elisitasi</a></p>
+                <p><a href="unit-05-negosiasi-kebutuhan.html">Unit 5 - Negosiasi Kebutuhan →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 1: Metodologi Pengembangan Perangkat Lunak</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .methodology-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .methodology-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .pros-cons {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .pros, .reveal .cons {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .pros {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .cons {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .agile-principles {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .agile-principles h4 {
+            color: #6c757d;
+            margin-top: 0;
+        }
+        .reveal .scrum-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .role-card {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .reveal .role-card h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 1</h1>
+                <h2>Mengaplikasikan Metodologi Pengembangan Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.001.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Memahami berbagai metodologi pengembangan perangkat lunak</li>
+                    <li class="fragment">Memilih metodologi yang sesuai dengan karakteristik proyek</li>
+                    <li class="fragment">Menerapkan metodologi dalam konteks proyek nyata</li>
+                </ul>
+            </section>
+
+            <!-- Pengertian Metodologi -->
+            <section>
+                <h2>Pengertian Metodologi Pengembangan</h2>
+                <div class="methodology-card">
+                    <p><strong>Metodologi pengembangan perangkat lunak</strong> adalah kerangka kerja yang memberikan panduan sistematis untuk mengembangkan perangkat lunak dari awal hingga akhir.</p>
+                </div>
+            </section>
+
+            <!-- Jenis-jenis Metodologi Overview -->
+            <section>
+                <h2>Jenis-jenis Metodologi</h2>
+                <ul>
+                    <li class="fragment">Model Waterfall</li>
+                    <li class="fragment">Metodologi Agile</li>
+                    <li class="fragment">Kerangka Kerja Scrum</li>
+                    <li class="fragment">DevOps</li>
+                </ul>
+            </section>
+
+            <!-- Waterfall Model -->
+            <section>
+                <h2>Model Waterfall</h2>
+                <div class="methodology-card">
+                    <h4>Karakteristik</h4>
+                    <p>Berurutan, linear, fase demi fase</p>
+                    
+                    <h4>Fase Pengembangan</h4>
+                    <ol>
+                        <li>Analisis Kebutuhan</li>
+                        <li>Desain</li>
+                        <li>Implementasi</li>
+                        <li>Pengujian</li>
+                        <li>Penyebaran</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Waterfall Pros & Cons -->
+            <section>
+                <h2>Model Waterfall - Analisis</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Kelebihan</h4>
+                        <ul>
+                            <li>Mudah dipahami</li>
+                            <li>Dokumentasi lengkap</li>
+                            <li>Struktur yang jelas</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Kekurangan</h4>
+                        <ul>
+                            <li>Tidak fleksibel</li>
+                            <li>Sulit mengakomodasi perubahan</li>
+                            <li>Testing di akhir</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agile Methodology -->
+            <section>
+                <h2>Metodologi Agile</h2>
+                <div class="methodology-card">
+                    <h4>Karakteristik</h4>
+                    <p>Iteratif, bertahap, kolaboratif</p>
+                </div>
+            </section>
+
+            <!-- Agile Principles -->
+            <section>
+                <h2>Prinsip-prinsip Agile</h2>
+                <div class="agile-principles">
+                    <ol>
+                        <li class="fragment">Individu dan interaksi lebih penting dari proses dan tools</li>
+                        <li class="fragment">Software yang berfungsi lebih penting dari dokumentasi lengkap</li>
+                        <li class="fragment">Kolaborasi dengan customer lebih penting dari negosiasi kontrak</li>
+                        <li class="fragment">Respons terhadap perubahan lebih penting dari mengikuti rencana</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Scrum Framework -->
+            <section>
+                <h2>Kerangka Kerja Scrum</h2>
+                <div class="methodology-card">
+                    <h4>Karakteristik</h4>
+                    <p>Berdasarkan sprint, tim yang mengatur diri sendiri</p>
+                </div>
+            </section>
+
+            <!-- Scrum Roles -->
+            <section>
+                <h2>Peran dalam Scrum</h2>
+                <div class="scrum-roles">
+                    <div class="role-card">
+                        <h5>Pemilik Produk</h5>
+                        <p>Mengelola Daftar Produk dan memastikan nilai produk</p>
+                    </div>
+                    <div class="role-card">
+                        <h5>Master Scrum</h5>
+                        <p>Memfasilitasi proses Scrum dan menghilangkan hambatan</p>
+                    </div>
+                    <div class="role-card">
+                        <h5>Tim Pengembangan</h5>
+                        <p>Tim yang mengembangkan produk secara mandiri</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scrum Events -->
+            <section>
+                <h2>Kegiatan Scrum</h2>
+                <ul>
+                    <li class="fragment"><strong>Perencanaan Sprint</strong> - Perencanaan sprint</li>
+                    <li class="fragment"><strong>Scrum Harian</strong> - Pertemuan harian 15 menit</li>
+                    <li class="fragment"><strong>Tinjauan Sprint</strong> - Tinjauan hasil sprint</li>
+                    <li class="fragment"><strong>Retrospektif Sprint</strong> - Evaluasi dan perbaikan</li>
+                </ul>
+            </section>
+
+            <!-- Scrum Artifacts -->
+            <section>
+                <h2>Artefak Scrum</h2>
+                <ul>
+                    <li class="fragment"><strong>Daftar Produk</strong> - Daftar fitur yang diinginkan</li>
+                    <li class="fragment"><strong>Daftar Sprint</strong> - Item yang dipilih untuk sprint</li>
+                    <li class="fragment"><strong>Peningkatan</strong> - Hasil kerja yang siap digunakan</li>
+                </ul>
+            </section>
+
+            <!-- DevOps -->
+            <section>
+                <h2>DevOps</h2>
+                <div class="methodology-card">
+                    <h4>Karakteristik</h4>
+                    <p>Integrasi pengembangan dan operasi</p>
+                    
+                    <h4>Prinsip</h4>
+                    <ul>
+                        <li>Integrasi Berkelanjutan</li>
+                        <li>Penyebaran Berkelanjutan</li>
+                        <li>Otomasi</li>
+                    </ul>
+                    
+                    <h4>Alat</h4>
+                    <p>Jenkins, Docker, Kubernetes, Git</p>
+                </div>
+            </section>
+
+            <!-- Faktor Pemilihan Metodologi -->
+            <section>
+                <h2>Faktor Pemilihan Metodologi</h2>
+                <ul>
+                    <li class="fragment">Ukuran tim</li>
+                    <li class="fragment">Kompleksitas proyek</li>
+                    <li class="fragment">Tingkat ketidakpastian kebutuhan</li>
+                    <li class="fragment">Jadwal proyek</li>
+                    <li class="fragment">Anggaran</li>
+                    <li class="fragment">Teknologi yang digunakan</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Latihan 1: Analisis Metodologi</h4>
+                    <p><strong>Tugas:</strong> Analisis proyek "Sistem Manajemen Perpustakaan Digital" dan tentukan metodologi yang paling sesuai.</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi karakteristik proyek</li>
+                        <li>Evaluasi setiap metodologi berdasarkan karakteristik</li>
+                        <li>Buat rekomendasi dengan justifikasi</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Latihan 2: Implementasi Scrum</h4>
+                    <p><strong>Tugas:</strong> Setup manajemen proyek menggunakan kerangka kerja Scrum.</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat Daftar Produk untuk fitur-fitur sistem perpustakaan</li>
+                        <li>Rencanakan Sprint pertama (2 minggu)</li>
+                        <li>Buat Daftar Sprint</li>
+                        <li>Definisikan Definisi Selesai</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Setup Metodologi</h2>
+                <p>Untuk proyek <strong>"Sistem Manajemen Perpustakaan Digital"</strong>, kita akan menggunakan <strong>Agile-Scrum</strong> dengan alasan:</p>
+                <ul>
+                    <li class="fragment">Kebutuhan yang mungkin berubah</li>
+                    <li class="fragment">Tim kecil (3-5 orang)</li>
+                    <li class="fragment">Perlu umpan balik cepat dari pengguna</li>
+                    <li class="fragment">Fleksibilitas dalam pengembangan</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 1</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Dokumen Pemilihan Metodologi</strong> - Analisis dan justifikasi pemilihan Agile-Scrum</li>
+                        <li><strong>Daftar Produk</strong> - Daftar fitur sistem perpustakaan</li>
+                        <li><strong>Perencanaan Sprint</strong> - Rencana sprint pertama</li>
+                        <li><strong>Piagam Proyek</strong> - Dokumen awal proyek</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu menjelaskan minimal 3 metodologi pengembangan</li>
+                        <li>Mampu menganalisis karakteristik proyek</li>
+                        <li>Mampu memilih metodologi yang sesuai</li>
+                        <li>Mampu membuat Daftar Produk</li>
+                        <li>Mampu melakukan Perencanaan Sprint</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://agilemanifesto.org/" target="_blank">Agile Manifesto</a></li>
+                    <li><a href="https://scrumguides.org/" target="_blank">Scrum Guide</a></li>
+                    <li><a href="https://aws.amazon.com/devops/what-is-devops/" target="_blank">DevOps Practices</a></li>
+                </ul>
+            </section>
+
+            <!-- Next Unit -->
+            <section class="title-slide">
+                <h2>Next Unit</h2>
+                <h3>Unit 2: Identifikasi Sumber Kebutuhan</h3>
+                <p>Terima kasih!</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

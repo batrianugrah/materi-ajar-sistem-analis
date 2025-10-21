@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 13: User Interface</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .ui-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .ui-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .ux-ui-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .ux-design, .reveal .ui-design {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .ux-design {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .ui-design {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .design-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .design-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .design-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .wireframe-item {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .wireframe-item h5 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .testing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .testing-item {
+            background: #fff3cd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .testing-item h5 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .specification-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .specification-item {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .specification-item h5 {
+            color: #495057;
+            margin-top: 0;
+        }
+        .reveal .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .process-item {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .reveal .process-item h5 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 13</h1>
+                <h2>Menganalisis User Interface</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.013.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Menganalisis user experience (UX)</li>
+                    <li class="fragment">Mendesain user interface (UI)</li>
+                    <li class="fragment">Membuat wireframe dan prototype</li>
+                    <li class="fragment">Melakukan usability testing</li>
+                    <li class="fragment">Membuat UI specifications</li>
+                </ul>
+            </section>
+
+            <!-- User Experience (UX) Design -->
+            <section>
+                <h2>User Experience (UX) Design</h2>
+                <div class="ui-card">
+                    <h4>Definisi UX Design</h4>
+                    <p>UX Design adalah proses merancang produk yang memberikan pengalaman yang bermakna dan relevan kepada pengguna melalui interaksi dengan produk tersebut.</p>
+                </div>
+            </section>
+
+            <!-- UX Design Principles -->
+            <section>
+                <h2>UX Design Principles</h2>
+                <div class="ux-ui-types">
+                    <div class="ux-design">
+                        <h4>User-Centered Design</h4>
+                        <ul>
+                            <li>User research</li>
+                            <li>User personas</li>
+                            <li>User journey mapping</li>
+                            <li>User testing</li>
+                        </ul>
+                    </div>
+                    <div class="ui-design">
+                        <h4>Usability Principles</h4>
+                        <ul>
+                            <li>Learnability</li>
+                            <li>Efficiency</li>
+                            <li>Memorability</li>
+                            <li>Error prevention</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UX Design Process -->
+            <section>
+                <h2>UX Design Process</h2>
+                <div class="process-grid">
+                    <div class="process-item">
+                        <h5>Research</h5>
+                        <ul>
+                            <li>User research</li>
+                            <li>Market research</li>
+                            <li>Competitive analysis</li>
+                            <li>Requirements gathering</li>
+                        </ul>
+                    </div>
+                    <div class="process-item">
+                        <h5>Design</h5>
+                        <ul>
+                            <li>Information architecture</li>
+                            <li>Wireframing</li>
+                            <li>Prototyping</li>
+                            <li>Visual design</li>
+                        </ul>
+                    </div>
+                    <div class="process-item">
+                        <h5>Testing</h5>
+                        <ul>
+                            <li>Usability testing</li>
+                            <li>User feedback</li>
+                            <li>Iteration</li>
+                            <li>Validation</li>
+                        </ul>
+                    </div>
+                    <div class="process-item">
+                        <h5>Implementation</h5>
+                        <ul>
+                            <li>Development</li>
+                            <li>Quality assurance</li>
+                            <li>Launch</li>
+                            <li>Monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Research -->
+            <section>
+                <h2>User Research</h2>
+                <h3>Research Methods</h3>
+                <ul>
+                    <li class="fragment"><strong>Interviews:</strong> One-on-one user interviews</li>
+                    <li class="fragment"><strong>Surveys:</strong> Online and offline surveys</li>
+                    <li class="fragment"><strong>Focus Groups:</strong> Group discussions</li>
+                    <li class="fragment"><strong>Observations:</strong> User behavior observation</li>
+                </ul>
+            </section>
+
+            <!-- User Personas -->
+            <section>
+                <h2>User Personas</h2>
+                <ul>
+                    <li class="fragment"><strong>Primary Personas:</strong> Main target users</li>
+                    <li class="fragment"><strong>Secondary Personas:</strong> Secondary target users</li>
+                    <li class="fragment"><strong>Negative Personas:</strong> Users to avoid</li>
+                    <li class="fragment"><strong>Persona Details:</strong> Demographics, goals, pain points</li>
+                </ul>
+            </section>
+
+            <!-- User Journey Mapping -->
+            <section>
+                <h2>User Journey Mapping</h2>
+                <ul>
+                    <li class="fragment"><strong>Awareness:</strong> How users discover the product</li>
+                    <li class="fragment"><strong>Consideration:</strong> How users evaluate the product</li>
+                    <li class="fragment"><strong>Purchase:</strong> How users acquire the product</li>
+                    <li class="fragment"><strong>Usage:</strong> How users interact with the product</li>
+                    <li class="fragment"><strong>Retention:</strong> How users continue using the product</li>
+                </ul>
+            </section>
+
+            <!-- User Interface (UI) Design -->
+            <section>
+                <h2>User Interface (UI) Design</h2>
+                <div class="ui-card">
+                    <h4>Definisi UI Design</h4>
+                    <p>UI Design adalah proses merancang interface yang memungkinkan pengguna berinteraksi dengan produk secara efektif dan efisien.</p>
+                </div>
+            </section>
+
+            <!-- UI Design Principles -->
+            <section>
+                <h2>UI Design Principles</h2>
+                <div class="design-grid">
+                    <div class="design-item">
+                        <h5>Visual Hierarchy</h5>
+                        <ul>
+                            <li>Size and scale</li>
+                            <li>Color contrast</li>
+                            <li>Typography</li>
+                            <li>Spacing</li>
+                        </ul>
+                    </div>
+                    <div class="design-item">
+                        <h5>Consistency</h5>
+                        <ul>
+                            <li>Design patterns</li>
+                            <li>Color schemes</li>
+                            <li>Typography</li>
+                            <li>Layout structure</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More UI Principles -->
+            <section>
+                <h2>UI Design Principles (Lanjutan)</h2>
+                <div class="design-grid">
+                    <div class="design-item">
+                        <h5>Accessibility</h5>
+                        <ul>
+                            <li>Color contrast</li>
+                            <li>Keyboard navigation</li>
+                            <li>Screen reader support</li>
+                            <li>Alternative text</li>
+                        </ul>
+                    </div>
+                    <div class="design-item">
+                        <h5>Responsiveness</h5>
+                        <ul>
+                            <li>Mobile-first design</li>
+                            <li>Flexible layouts</li>
+                            <li>Adaptive content</li>
+                            <li>Touch-friendly interfaces</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UI Design Elements -->
+            <section>
+                <h2>UI Design Elements</h2>
+                <h3>Visual Elements</h3>
+                <ul>
+                    <li class="fragment"><strong>Typography:</strong> Fonts, sizes, weights</li>
+                    <li class="fragment"><strong>Colors:</strong> Color palette, contrast</li>
+                    <li class="fragment"><strong>Images:</strong> Photos, icons, illustrations</li>
+                    <li class="fragment"><strong>Shapes:</strong> Buttons, cards, containers</li>
+                </ul>
+            </section>
+
+            <!-- Interactive Elements -->
+            <section>
+                <h2>Interactive Elements</h2>
+                <ul>
+                    <li class="fragment"><strong>Buttons:</strong> Primary, secondary, tertiary</li>
+                    <li class="fragment"><strong>Forms:</strong> Input fields, labels, validation</li>
+                    <li class="fragment"><strong>Navigation:</strong> Menus, breadcrumbs, pagination</li>
+                    <li class="fragment"><strong>Feedback:</strong> Loading states, error messages</li>
+                </ul>
+            </section>
+
+            <!-- Wireframing -->
+            <section>
+                <h2>Wireframing</h2>
+                <div class="wireframe-grid">
+                    <div class="wireframe-item">
+                        <h5>Low-Fidelity</h5>
+                        <ul>
+                            <li>Basic layout</li>
+                            <li>Content structure</li>
+                            <li>Navigation flow</li>
+                            <li>Quick iteration</li>
+                        </ul>
+                    </div>
+                    <div class="wireframe-item">
+                        <h5>Mid-Fidelity</h5>
+                        <ul>
+                            <li>Detailed layout</li>
+                            <li>Content hierarchy</li>
+                            <li>Interactive elements</li>
+                            <li>User flow</li>
+                        </ul>
+                    </div>
+                    <div class="wireframe-item">
+                        <h5>High-Fidelity</h5>
+                        <ul>
+                            <li>Pixel-perfect design</li>
+                            <li>Final content</li>
+                            <li>Interactive prototype</li>
+                            <li>Development ready</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prototyping -->
+            <section>
+                <h2>Prototyping</h2>
+                <h3>Prototype Types</h3>
+                <ul>
+                    <li class="fragment"><strong>Static Prototypes:</strong> Non-interactive mockups</li>
+                    <li class="fragment"><strong>Interactive Prototypes:</strong> Clickable interfaces</li>
+                    <li class="fragment"><strong>Animated Prototypes:</strong> Motion and transitions</li>
+                    <li class="fragment"><strong>Functional Prototypes:</strong> Working features</li>
+                </ul>
+            </section>
+
+            <!-- Prototyping Tools -->
+            <section>
+                <h2>Prototyping Tools</h2>
+                <ul>
+                    <li class="fragment"><strong>Design Tools:</strong> Figma, Sketch, Adobe XD</li>
+                    <li class="fragment"><strong>Prototyping Tools:</strong> InVision, Marvel, Principle</li>
+                    <li class="fragment"><strong>Code Tools:</strong> HTML/CSS, React, Vue</li>
+                    <li class="fragment"><strong>Testing Tools:</strong> UserTesting, Maze, Lookback</li>
+                </ul>
+            </section>
+
+            <!-- Usability Testing -->
+            <section>
+                <h2>Usability Testing</h2>
+                <div class="testing-grid">
+                    <div class="testing-item">
+                        <h5>Moderated Testing</h5>
+                        <ul>
+                            <li>Facilitator present</li>
+                            <li>Real-time feedback</li>
+                            <li>Detailed insights</li>
+                            <li>Higher cost</li>
+                        </ul>
+                    </div>
+                    <div class="testing-item">
+                        <h5>Unmoderated Testing</h5>
+                        <ul>
+                            <li>Self-guided</li>
+                            <li>Remote testing</li>
+                            <li>Scalable</li>
+                            <li>Lower cost</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testing Methods -->
+            <section>
+                <h2>Testing Methods</h2>
+                <ul>
+                    <li class="fragment"><strong>Task-Based Testing:</strong> Specific task completion</li>
+                    <li class="fragment"><strong>Think-Aloud Protocol:</strong> Verbal feedback</li>
+                    <li class="fragment"><strong>Eye Tracking:</strong> Visual attention analysis</li>
+                    <li class="fragment"><strong>A/B Testing:</strong> Comparative testing</li>
+                </ul>
+            </section>
+
+            <!-- Testing Metrics -->
+            <section>
+                <h2>Testing Metrics</h2>
+                <ul>
+                    <li class="fragment"><strong>Task Success Rate:</strong> Percentage of completed tasks</li>
+                    <li class="fragment"><strong>Time on Task:</strong> Time to complete tasks</li>
+                    <li class="fragment"><strong>Error Rate:</strong> Number of errors made</li>
+                    <li class="fragment"><strong>User Satisfaction:</strong> User feedback scores</li>
+                </ul>
+            </section>
+
+            <!-- UI Specifications -->
+            <section>
+                <h2>UI Specifications</h2>
+                <div class="specification-grid">
+                    <div class="specification-item">
+                        <h5>Visual Specifications</h5>
+                        <ul>
+                            <li>Color codes</li>
+                            <li>Typography</li>
+                            <li>Spacing</li>
+                            <li>Dimensions</li>
+                        </ul>
+                    </div>
+                    <div class="specification-item">
+                        <h5>Interactive Specifications</h5>
+                        <ul>
+                            <li>Hover states</li>
+                            <li>Click states</li>
+                            <li>Transitions</li>
+                            <li>Animations</li>
+                        </ul>
+                    </div>
+                    <div class="specification-item">
+                        <h5>Responsive Specifications</h5>
+                        <ul>
+                            <li>Breakpoints</li>
+                            <li>Grid systems</li>
+                            <li>Layout variations</li>
+                            <li>Content scaling</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: UX Research</h4>
+                    <p><strong>Tugas:</strong> Lakukan UX research untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi target users</li>
+                        <li>Buat user personas</li>
+                        <li>Map user journey</li>
+                        <li>Identifikasi pain points</li>
+                        <li>Buat research report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: UI Design</h4>
+                    <p><strong>Tugas:</strong> Desain UI untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat wireframes</li>
+                        <li>Desain visual interface</li>
+                        <li>Buat interactive prototype</li>
+                        <li>Test dengan users</li>
+                        <li>Iterasi berdasarkan feedback</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Usability Testing</h4>
+                    <p><strong>Tugas:</strong> Lakukan usability testing</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat test plan</li>
+                        <li>Recruit test participants</li>
+                        <li>Conduct usability tests</li>
+                        <li>Analyze results</li>
+                        <li>Buat test report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: UI Specifications</h4>
+                    <p><strong>Tugas:</strong> Buat UI specifications lengkap</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Dokumentasikan visual specs</li>
+                        <li>Dokumentasikan interactive specs</li>
+                        <li>Dokumentasikan responsive specs</li>
+                        <li>Buat style guide</li>
+                        <li>Validasi dengan development team</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: User Interface</h2>
+                <p>Analisis UI untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- UX Research -->
+            <section>
+                <h2>1. UX Research</h2>
+                <h3>User Personas</h3>
+                <ul>
+                    <li class="fragment"><strong>Primary Persona - Student:</strong> Active library users, tech-savvy, mobile-first</li>
+                    <li class="fragment"><strong>Secondary Persona - Librarian:</strong> Library staff, desktop users, efficiency-focused</li>
+                    <li class="fragment"><strong>Secondary Persona - Faculty:</strong> Research-focused, desktop users, advanced features</li>
+                </ul>
+            </section>
+
+            <!-- User Journey -->
+            <section>
+                <h2>User Journey</h2>
+                <h3>Student Borrowing Journey</h3>
+                <ul>
+                    <li class="fragment"><strong>Discovery:</strong> Search for books</li>
+                    <li class="fragment"><strong>Evaluation:</strong> Check book details and availability</li>
+                    <li class="fragment"><strong>Action:</strong> Borrow or reserve book</li>
+                    <li class="fragment"><strong>Management:</strong> Track borrowing history</li>
+                    <li class="fragment"><strong>Return:</strong> Return books on time</li>
+                </ul>
+            </section>
+
+            <!-- Pain Points -->
+            <section>
+                <h2>Pain Points</h2>
+                <ul>
+                    <li class="fragment"><strong>Search Issues:</strong> Difficult to find books</li>
+                    <li class="fragment"><strong>Availability Issues:</strong> Unclear book availability</li>
+                    <li class="fragment"><strong>Mobile Experience:</strong> Poor mobile interface</li>
+                    <li class="fragment"><strong>Notification Issues:</strong> No real-time notifications</li>
+                </ul>
+            </section>
+
+            <!-- UI Design -->
+            <section>
+                <h2>2. UI Design</h2>
+                <h3>Design System</h3>
+                <ul>
+                    <li class="fragment"><strong>Color Palette:</strong> Blue primary, green secondary, gray neutrals</li>
+                    <li class="fragment"><strong>Typography:</strong> Inter font family, 16px base size</li>
+                    <li class="fragment"><strong>Spacing:</strong> 8px grid system</li>
+                    <li class="fragment"><strong>Components:</strong> Consistent button, form, and card styles</li>
+                </ul>
+            </section>
+
+            <!-- Layout Design -->
+            <section>
+                <h2>Layout Design</h2>
+                <ul>
+                    <li class="fragment"><strong>Header:</strong> Logo, navigation, user menu</li>
+                    <li class="fragment"><strong>Sidebar:</strong> Quick access, filters, categories</li>
+                    <li class="fragment"><strong>Main Content:</strong> Book listings, search results</li>
+                    <li class="fragment"><strong>Footer:</strong> Links, contact information</li>
+                </ul>
+            </section>
+
+            <!-- Responsive Design -->
+            <section>
+                <h2>Responsive Design</h2>
+                <ul>
+                    <li class="fragment"><strong>Mobile (320px-768px):</strong> Single column, touch-friendly</li>
+                    <li class="fragment"><strong>Tablet (768px-1024px):</strong> Two column, hybrid navigation</li>
+                    <li class="fragment"><strong>Desktop (1024px+):</strong> Multi-column, full navigation</li>
+                </ul>
+            </section>
+
+            <!-- Wireframes -->
+            <section>
+                <h2>3. Wireframes</h2>
+                <h3>Key Pages</h3>
+                <ul>
+                    <li class="fragment"><strong>Homepage:</strong> Search, featured books, quick access</li>
+                    <li class="fragment"><strong>Search Results:</strong> Book listings, filters, pagination</li>
+                    <li class="fragment"><strong>Book Details:</strong> Book information, availability, actions</li>
+                    <li class="fragment"><strong>User Dashboard:</strong> Borrowing history, reservations, fines</li>
+                </ul>
+            </section>
+
+            <!-- Prototypes -->
+            <section>
+                <h2>Prototypes</h2>
+                <h3>Interactive Prototypes</h3>
+                <ul>
+                    <li class="fragment"><strong>Low-Fidelity:</strong> Basic layout and navigation</li>
+                    <li class="fragment"><strong>Mid-Fidelity:</strong> Detailed interactions</li>
+                    <li class="fragment"><strong>High-Fidelity:</strong> Final design with animations</li>
+                </ul>
+            </section>
+
+            <!-- Usability Testing -->
+            <section>
+                <h2>4. Usability Testing</h2>
+                <h3>Test Scenarios</h3>
+                <ul>
+                    <li class="fragment"><strong>Scenario 1:</strong> Search and borrow a book</li>
+                    <li class="fragment"><strong>Scenario 2:</strong> Reserve an unavailable book</li>
+                    <li class="fragment"><strong>Scenario 3:</strong> Check borrowing history</li>
+                    <li class="fragment"><strong>Scenario 4:</strong> Pay fines online</li>
+                </ul>
+            </section>
+
+            <!-- Test Results -->
+            <section>
+                <h2>Test Results</h2>
+                <h3>Key Findings</h3>
+                <ul>
+                    <li class="fragment"><strong>Task Success Rate:</strong> 85%</li>
+                    <li class="fragment"><strong>Average Time:</strong> 2.5 minutes per task</li>
+                    <li class="fragment"><strong>Error Rate:</strong> 15%</li>
+                    <li class="fragment"><strong>User Satisfaction:</strong> 4.2/5</li>
+                </ul>
+            </section>
+
+            <!-- Issues Identified -->
+            <section>
+                <h2>Issues Identified</h2>
+                <ul>
+                    <li class="fragment"><strong>Search Interface:</strong> Confusing search filters</li>
+                    <li class="fragment"><strong>Mobile Navigation:</strong> Difficult to access menu</li>
+                    <li class="fragment"><strong>Book Details:</strong> Missing key information</li>
+                    <li class="fragment"><strong>Borrowing Process:</strong> Too many steps</li>
+                </ul>
+            </section>
+
+            <!-- UI Specifications -->
+            <section>
+                <h2>5. UI Specifications</h2>
+                <h3>Visual Specifications</h3>
+                <ul>
+                    <li class="fragment"><strong>Colors:</strong> Primary #3498db, Secondary #27ae60, Error #e74c3c</li>
+                    <li class="fragment"><strong>Typography:</strong> Inter Regular 16px, Bold 18px</li>
+                    <li class="fragment"><strong>Spacing:</strong> 8px, 16px, 24px, 32px</li>
+                    <li class="fragment"><strong>Components:</strong> Button height 44px, Input height 40px</li>
+                </ul>
+            </section>
+
+            <!-- Interactive Specifications -->
+            <section>
+                <h2>Interactive Specifications</h2>
+                <ul>
+                    <li class="fragment"><strong>Hover States:</strong> 0.2s transition, color change</li>
+                    <li class="fragment"><strong>Click States:</strong> 0.1s transition, scale effect</li>
+                    <li class="fragment"><strong>Loading States:</strong> Skeleton screens, progress bars</li>
+                    <li class="fragment"><strong>Error States:</strong> Red borders, error messages</li>
+                </ul>
+            </section>
+
+            <!-- Responsive Specifications -->
+            <section>
+                <h2>Responsive Specifications</h2>
+                <ul>
+                    <li class="fragment"><strong>Breakpoints:</strong> 320px, 768px, 1024px, 1440px</li>
+                    <li class="fragment"><strong>Grid System:</strong> 12-column grid, 20px gutters</li>
+                    <li class="fragment"><strong>Typography Scale:</strong> 14px mobile, 16px tablet, 18px desktop</li>
+                    <li class="fragment"><strong>Component Scaling:</strong> Responsive buttons, flexible layouts</li>
+                </ul>
+            </section>
+
+            <!-- Style Guide -->
+            <section>
+                <h2>Style Guide</h2>
+                <h3>Component Library</h3>
+                <ul>
+                    <li class="fragment"><strong>Buttons:</strong> Primary, secondary, outline variants</li>
+                    <li class="fragment"><strong>Forms:</strong> Input fields, labels, validation</li>
+                    <li class="fragment"><strong>Cards:</strong> Book cards, user cards, info cards</li>
+                    <li class="fragment"><strong>Navigation:</strong> Header, sidebar, breadcrumbs</li>
+                </ul>
+            </section>
+
+            <!-- Accessibility -->
+            <section>
+                <h2>Accessibility</h2>
+                <ul>
+                    <li class="fragment"><strong>Color Contrast:</strong> WCAG AA compliance</li>
+                    <li class="fragment"><strong>Keyboard Navigation:</strong> Tab order, focus states</li>
+                    <li class="fragment"><strong>Screen Reader:</strong> ARIA labels, alt text</li>
+                    <li class="fragment"><strong>Touch Targets:</strong> Minimum 44px touch areas</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 13</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>UX Research Report</strong> - Laporan penelitian UX</li>
+                        <li><strong>User Personas</strong> - Persona pengguna</li>
+                        <li><strong>User Journey Maps</strong> - Peta perjalanan pengguna</li>
+                        <li><strong>UI Design</strong> - Desain antarmuka pengguna</li>
+                        <li><strong>Wireframes</strong> - Wireframe dan prototype</li>
+                        <li><strong>Usability Testing Report</strong> - Laporan pengujian kegunaan</li>
+                        <li><strong>UI Specifications</strong> - Spesifikasi antarmuka pengguna</li>
+                        <li><strong>Style Guide</strong> - Panduan gaya desain</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu menganalisis user experience (UX)</li>
+                        <li>Mampu mendesain user interface (UI)</li>
+                        <li>Mampu membuat wireframe dan prototype</li>
+                        <li>Mampu melakukan usability testing</li>
+                        <li>Mampu membuat UI specifications</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.nngroup.com/" target="_blank">UX Research Methods</a></li>
+                    <li><a href="https://www.usability.gov/" target="_blank">Usability Testing Guidelines</a></li>
+                    <li><a href="https://www.w3.org/WAI/" target="_blank">Web Accessibility Guidelines</a></li>
+                    <li><a href="https://www.figma.com/" target="_blank">UI Design Tools</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-12-komponen-perangkat-lunak.html">← Unit 12 - Komponen Perangkat Lunak</a></p>
+                <p><a href="unit-01-metodologi-pengembangan.html">Unit 1 - Metodologi Pengembangan →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

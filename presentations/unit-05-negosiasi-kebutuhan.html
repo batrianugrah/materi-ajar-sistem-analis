@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 5: Negosiasi Kebutuhan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .negotiation-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .negotiation-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .strategy-item {
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .reveal .collaborative {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+        }
+        .reveal .competitive {
+            background: #ffebee;
+            border: 2px solid #f44336;
+        }
+        .reveal .accommodating {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+        .reveal .avoiding {
+            background: #f5f5f5;
+            border: 2px solid #9e9e9e;
+        }
+        .reveal .compromising {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .conflict-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .conflict-type {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .functional-conflict {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .performance-conflict {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .resource-conflict {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+        }
+        .reveal .timeline-conflict {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+        }
+        .reveal .tradeoff-table {
+            overflow-x: auto;
+        }
+        .reveal .tradeoff-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .tradeoff-table th,
+        .reveal .tradeoff-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .tradeoff-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 5</h1>
+                <h2>Melakukan Negosiasi Kebutuhan Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.005.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Memahami prinsip-prinsip negosiasi dalam requirements</li>
+                    <li class="fragment">Mengidentifikasi konflik requirements</li>
+                    <li class="fragment">Melakukan negosiasi yang efektif</li>
+                    <li class="fragment">Mencapai kesepakatan yang win-win</li>
+                    <li class="fragment">Mendokumentasikan hasil negosiasi</li>
+                </ul>
+            </section>
+
+            <!-- Pengertian Negosiasi -->
+            <section>
+                <h2>Pengertian Negosiasi Requirements</h2>
+                <div class="negotiation-card">
+                    <p><strong>Negosiasi requirements</strong> adalah proses mencapai kesepakatan antara stakeholder ketika terdapat konflik, trade-offs, atau constraints dalam requirements.</p>
+                </div>
+            </section>
+
+            <!-- Sumber Konflik -->
+            <section>
+                <h2>Sumber Konflik Requirements</h2>
+                <div class="conflict-types">
+                    <div class="conflict-type functional-conflict">
+                        <h4>Functional Conflicts</h4>
+                        <p>Fitur yang saling bertentangan</p>
+                    </div>
+                    <div class="conflict-type performance-conflict">
+                        <h4>Performance Conflicts</h4>
+                        <p>Speed vs Security</p>
+                    </div>
+                    <div class="conflict-type resource-conflict">
+                        <h4>Resource Conflicts</h4>
+                        <p>Budget vs Features</p>
+                    </div>
+                    <div class="conflict-type timeline-conflict">
+                        <h4>Timeline Conflicts</h4>
+                        <p>Quality vs Speed</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stakeholder Conflicts -->
+            <section>
+                <h2>Stakeholder Conflicts</h2>
+                <ul>
+                    <li class="fragment"><strong>Different Priorities:</strong> Setiap stakeholder punya prioritas berbeda</li>
+                    <li class="fragment"><strong>Resource Competition:</strong> Limited budget/time</li>
+                    <li class="fragment"><strong>Technical Constraints:</strong> Technology limitations</li>
+                    <li class="fragment"><strong>Business Constraints:</strong> Regulatory, compliance</li>
+                </ul>
+            </section>
+
+            <!-- Prinsip Negosiasi -->
+            <section>
+                <h2>Prinsip Negosiasi</h2>
+                <h3>Win-Win Approach</h3>
+                <ul>
+                    <li class="fragment">Fokus pada kepentingan, bukan posisi</li>
+                    <li class="fragment">Cari solusi yang menguntungkan semua pihak</li>
+                    <li class="fragment">Pisahkan masalah dari orang</li>
+                </ul>
+            </section>
+
+            <!-- Active Listening -->
+            <section>
+                <h2>Active Listening</h2>
+                <ul>
+                    <li class="fragment">Dengarkan dengan empati</li>
+                    <li class="fragment">Tanyakan pertanyaan klarifikasi</li>
+                    <li class="fragment">Paraphrase untuk memastikan pemahaman</li>
+                </ul>
+            </section>
+
+            <!-- Creative Problem Solving -->
+            <section>
+                <h2>Creative Problem Solving</h2>
+                <ul>
+                    <li class="fragment">Brainstorming alternatif</li>
+                    <li class="fragment">Think outside the box</li>
+                    <li class="fragment">Consider multiple options</li>
+                </ul>
+            </section>
+
+            <!-- Strategi Negosiasi -->
+            <section>
+                <h2>Strategi Negosiasi</h2>
+                <div class="strategy-grid">
+                    <div class="strategy-item collaborative">
+                        <h4>Collaborative</h4>
+                        <p>High concern for self and others</p>
+                        <p>Win-win approach</p>
+                    </div>
+                    <div class="strategy-item competitive">
+                        <h4>Competitive</h4>
+                        <p>High concern for self, low for others</p>
+                        <p>Win-lose approach</p>
+                    </div>
+                    <div class="strategy-item accommodating">
+                        <h4>Accommodating</h4>
+                        <p>Low concern for self, high for others</p>
+                        <p>Lose-win approach</p>
+                    </div>
+                    <div class="strategy-item avoiding">
+                        <h4>Avoiding</h4>
+                        <p>Low concern for self and others</p>
+                        <p>No negotiation</p>
+                    </div>
+                    <div class="strategy-item compromising">
+                        <h4>Compromising</h4>
+                        <p>Moderate concern for self and others</p>
+                        <p>Split the difference</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proses Negosiasi -->
+            <section>
+                <h2>Proses Negosiasi</h2>
+                <h3>Preparation Phase</h3>
+                <ol>
+                    <li class="fragment"><strong>Identify Issues:</strong> Apa yang dinegosiasikan</li>
+                    <li class="fragment"><strong>Research:</strong> Kumpulkan data dan fakta</li>
+                    <li class="fragment"><strong>Set Objectives:</strong> Tentukan target dan BATNA</li>
+                    <li class="fragment"><strong>Plan Strategy:</strong> Siapkan approach dan tactics</li>
+                </ol>
+            </section>
+
+            <!-- Negotiation Phase -->
+            <section>
+                <h2>Negotiation Phase</h2>
+                <ol>
+                    <li class="fragment"><strong>Opening:</strong> Presentasi posisi awal</li>
+                    <li class="fragment"><strong>Exploration:</strong> Diskusi dan klarifikasi</li>
+                    <li class="fragment"><strong>Bargaining:</strong> Pertukaran offers dan counter-offers</li>
+                    <li class="fragment"><strong>Closing:</strong> Mencapai kesepakatan</li>
+                </ol>
+            </section>
+
+            <!-- Documentation Phase -->
+            <section>
+                <h2>Documentation Phase</h2>
+                <ol>
+                    <li class="fragment"><strong>Agreement Summary:</strong> Ringkasan kesepakatan</li>
+                    <li class="fragment"><strong>Action Items:</strong> Tugas dan tanggung jawab</li>
+                    <li class="fragment"><strong>Timeline:</strong> Jadwal implementasi</li>
+                    <li class="fragment"><strong>Follow-up:</strong> Monitoring dan review</li>
+                </ol>
+            </section>
+
+            <!-- Tools dan Techniques -->
+            <section>
+                <h2>Tools dan Techniques</h2>
+                <h3>Requirements Trade-off Matrix</h3>
+                <div class="tradeoff-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Requirement</th>
+                                <th>Cost</th>
+                                <th>Time</th>
+                                <th>Quality</th>
+                                <th>Risk</th>
+                                <th>Stakeholder Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feature A</td>
+                                <td>High</td>
+                                <td>Medium</td>
+                                <td>High</td>
+                                <td>Low</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td>Feature B</td>
+                                <td>Low</td>
+                                <td>Low</td>
+                                <td>Medium</td>
+                                <td>High</td>
+                                <td>Medium</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- MoSCoW Re-negotiation -->
+            <section>
+                <h2>MoSCoW Re-negotiation</h2>
+                <ul>
+                    <li class="fragment">Re-evaluate Must Have items</li>
+                    <li class="fragment">Move items between categories</li>
+                    <li class="fragment">Justify changes with impact analysis</li>
+                </ul>
+            </section>
+
+            <!-- Impact Analysis -->
+            <section>
+                <h2>Impact Analysis</h2>
+                <ul>
+                    <li class="fragment"><strong>Technical Impact:</strong> Development effort, complexity</li>
+                    <li class="fragment"><strong>Business Impact:</strong> ROI, user satisfaction</li>
+                    <li class="fragment"><strong>Resource Impact:</strong> Budget, timeline, team</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Conflict Identification</h4>
+                    <p><strong>Tugas:</strong> Identifikasi konflik dalam requirements sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Analisis requirements yang dikumpulkan</li>
+                        <li>Identifikasi potential conflicts</li>
+                        <li>Kategorikan jenis konflik</li>
+                        <li>Buat conflict analysis matrix</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Negotiation Simulation</h4>
+                    <p><strong>Tugas:</strong> Simulasi negosiasi antara librarian dan IT manager</p>
+                    
+                    <p><strong>Scenario:</strong></p>
+                    <ul>
+                        <li>Librarian: Butuh advanced search dengan AI</li>
+                        <li>IT Manager: Budget terbatas, timeline ketat</li>
+                        <li>Business Owner: ROI harus jelas</li>
+                    </ul>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Prepare negotiation strategy</li>
+                        <li>Role-play negotiation session</li>
+                        <li>Document agreement</li>
+                        <li>Evaluate outcome</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Trade-off Analysis</h4>
+                    <p><strong>Tugas:</strong> Analisis trade-off untuk fitur recommendation system</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi trade-offs (cost vs benefit)</li>
+                        <li>Buat impact analysis</li>
+                        <li>Propose alternatives</li>
+                        <li>Recommend solution</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Requirements Negotiation</h2>
+                <p>Konflik yang Ditemukan dalam <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- Konflik 1 -->
+            <section>
+                <h2>1. Advanced Search vs Performance</h2>
+                <div class="negotiation-card">
+                    <h4>Konflik:</h4>
+                    <ul>
+                        <li>Librarian: Butuh AI-powered search</li>
+                        <li>IT: Performance concern, complexity</li>
+                        <li>Management: Budget constraint</li>
+                    </ul>
+                    
+                    <h4>Negosiasi:</h4>
+                    <ul>
+                        <li><strong>Proposal:</strong> Phased implementation</li>
+                        <li><strong>Phase 1:</strong> Basic search dengan filters</li>
+                        <li><strong>Phase 2:</strong> AI enhancement setelah user adoption</li>
+                        <li><strong>Trade-off:</strong> Delayed AI, but proven ROI</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Konflik 2 -->
+            <section>
+                <h2>2. Mobile App vs Desktop Focus</h2>
+                <div class="negotiation-card">
+                    <h4>Konflik:</h4>
+                    <ul>
+                        <li>Students: Mobile app priority</li>
+                        <li>Librarian: Desktop interface focus</li>
+                        <li>IT: Resource constraint</li>
+                    </ul>
+                    
+                    <h4>Negosiasi:</h4>
+                    <ul>
+                        <li><strong>Proposal:</strong> Responsive web design</li>
+                        <li><strong>Benefit:</strong> Single codebase, mobile-friendly</li>
+                        <li><strong>Trade-off:</strong> Native app later, responsive now</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Konflik 3 -->
+            <section>
+                <h2>3. Real-time vs Batch Processing</h2>
+                <div class="negotiation-card">
+                    <h4>Konflik:</h4>
+                    <ul>
+                        <li>Users: Real-time notifications</li>
+                        <li>System: Performance impact</li>
+                        <li>Infrastructure: Cost concern</li>
+                    </ul>
+                    
+                    <h4>Negosiasi:</h4>
+                    <ul>
+                        <li><strong>Proposal:</strong> Hybrid approach</li>
+                        <li><strong>Critical:</strong> Real-time (overdue, reservations)</li>
+                        <li><strong>Non-critical:</strong> Batch (reports, statistics)</li>
+                        <li><strong>Trade-off:</strong> Selective real-time, cost-effective</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Negotiation Outcomes -->
+            <section>
+                <h2>Negotiation Outcomes</h2>
+                <h3>Agreement 1: Search Functionality</h3>
+                <ul>
+                    <li><strong>Agreed:</strong> Basic search + filters (Phase 1)</li>
+                    <li><strong>Future:</strong> AI enhancement (Phase 2)</li>
+                    <li><strong>Timeline:</strong> 3 months vs 6 months</li>
+                    <li><strong>Budget:</strong> 70% of original estimate</li>
+                </ul>
+            </section>
+
+            <!-- More Outcomes -->
+            <section>
+                <h2>Negotiation Outcomes (Lanjutan)</h2>
+                <h3>Agreement 2: Mobile Interface</h3>
+                <ul>
+                    <li><strong>Agreed:</strong> Responsive web design</li>
+                    <li><strong>Future:</strong> Native app (if needed)</li>
+                    <li><strong>Timeline:</strong> Same as desktop</li>
+                    <li><strong>Budget:</strong> 50% of native app cost</li>
+                </ul>
+                
+                <h3>Agreement 3: Notifications</h3>
+                <ul>
+                    <li><strong>Agreed:</strong> Real-time for critical events</li>
+                    <li><strong>Agreed:</strong> Batch for non-critical</li>
+                    <li><strong>Infrastructure:</strong> Cloud-based messaging</li>
+                    <li><strong>Cost:</strong> 60% of full real-time solution</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 5</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Conflict Analysis Report</strong> - Identifikasi dan analisis konflik</li>
+                        <li><strong>Negotiation Strategy</strong> - Rencana negosiasi</li>
+                        <li><strong>Trade-off Matrix</strong> - Analisis trade-offs</li>
+                        <li><strong>Agreement Summary</strong> - Hasil negosiasi</li>
+                        <li><strong>Impact Analysis</strong> - Dampak kesepakatan</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu mengidentifikasi konflik requirements</li>
+                        <li>Mampu mempersiapkan strategi negosiasi</li>
+                        <li>Mampu melakukan negosiasi yang efektif</li>
+                        <li>Mampu menganalisis trade-offs</li>
+                        <li>Mampu mendokumentasikan kesepakatan</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.iiba.org/" target="_blank">Negotiation Skills for Business Analysts</a></li>
+                    <li><a href="https://www.gettingtoyes.com/" target="_blank">Getting to Yes - Roger Fisher</a></li>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Negotiation Best Practices</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-04-klasifikasi-alokasi-kebutuhan.html">← Unit 4 - Klasifikasi Alokasi Kebutuhan</a></p>
+                <p><a href="unit-06-dokumentasi-spesifikasi.html">Unit 6 - Dokumentasi Spesifikasi →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 6: Dokumentasi Spesifikasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .srs-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .srs-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .user-story-card {
+            background: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .user-story-card h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .use-case-card {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .use-case-card h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .srs-structure {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .srs-section {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .srs-section h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .traceability-table {
+            overflow-x: auto;
+        }
+        .reveal .traceability-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .traceability-table th,
+        .reveal .traceability-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .traceability-table th {
+            background-color: #f2f2f2;
+        }
+        .reveal .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 6</h1>
+                <h2>Membuat Kebutuhan Dokumentasi Spesifikasi Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.006.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Membuat Software Requirements Specification (SRS) yang komprehensif</li>
+                    <li class="fragment">Menulis user stories yang efektif</li>
+                    <li class="fragment">Membuat use cases yang detail</li>
+                    <li class="fragment">Mendefinisikan acceptance criteria yang jelas</li>
+                    <li class="fragment">Membuat requirements traceability matrix</li>
+                </ul>
+            </section>
+
+            <!-- SRS Overview -->
+            <section>
+                <h2>Software Requirements Specification (SRS)</h2>
+                <div class="srs-card">
+                    <p><strong>SRS</strong> adalah dokumen formal yang mendefinisikan requirements untuk sistem perangkat lunak yang akan dikembangkan.</p>
+                </div>
+            </section>
+
+            <!-- SRS Structure -->
+            <section>
+                <h2>Struktur SRS</h2>
+                <div class="srs-structure">
+                    <div class="srs-section">
+                        <h5>1. Introduction</h5>
+                        <ul>
+                            <li>Purpose</li>
+                            <li>Scope</li>
+                            <li>Definitions</li>
+                            <li>References</li>
+                        </ul>
+                    </div>
+                    <div class="srs-section">
+                        <h5>2. Overall Description</h5>
+                        <ul>
+                            <li>Product Perspective</li>
+                            <li>Product Functions</li>
+                            <li>User Characteristics</li>
+                            <li>Constraints</li>
+                            <li>Assumptions</li>
+                        </ul>
+                    </div>
+                    <div class="srs-section">
+                        <h5>3. Specific Requirements</h5>
+                        <ul>
+                            <li>Functional Requirements</li>
+                            <li>Non-Functional Requirements</li>
+                            <li>Interface Requirements</li>
+                            <li>Performance Requirements</li>
+                            <li>Security Requirements</li>
+                        </ul>
+                    </div>
+                    <div class="srs-section">
+                        <h5>4. Appendices</h5>
+                        <ul>
+                            <li>Glossary</li>
+                            <li>References</li>
+                            <li>Index</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices SRS -->
+            <section>
+                <h2>Best Practices SRS</h2>
+                <ul>
+                    <li class="fragment"><strong>Clear and Unambiguous:</strong> Setiap requirement harus jelas dan tidak ambigu</li>
+                    <li class="fragment"><strong>Complete:</strong> Mencakup semua kebutuhan sistem</li>
+                    <li class="fragment"><strong>Consistent:</strong> Tidak ada konflik antar requirements</li>
+                    <li class="fragment"><strong>Traceable:</strong> Dapat ditelusuri ke sumbernya</li>
+                    <li class="fragment"><strong>Verifiable:</strong> Dapat diuji dan divalidasi</li>
+                </ul>
+            </section>
+
+            <!-- User Stories -->
+            <section>
+                <h2>User Stories</h2>
+                <div class="user-story-card">
+                    <h4>Format User Story</h4>
+                    <p><strong>Template:</strong> As a [user type], I want [functionality], so that [benefit]</p>
+                </div>
+            </section>
+
+            <!-- User Story Examples -->
+            <section>
+                <h2>Contoh User Stories</h2>
+                <ul>
+                    <li class="fragment">As a librarian, I want to search books by title, so that I can quickly find books for students</li>
+                    <li class="fragment">As a student, I want to reserve a book online, so that I can ensure the book is available when I need it</li>
+                </ul>
+            </section>
+
+            <!-- Acceptance Criteria -->
+            <section>
+                <h2>Acceptance Criteria</h2>
+                <p>Setiap user story harus memiliki acceptance criteria yang jelas:</p>
+                <ul>
+                    <li class="fragment"><strong>Given:</strong> Kondisi awal</li>
+                    <li class="fragment"><strong>When:</strong> Aksi yang dilakukan</li>
+                    <li class="fragment"><strong>Then:</strong> Hasil yang diharapkan</li>
+                </ul>
+            </section>
+
+            <!-- Acceptance Criteria Example -->
+            <section>
+                <h2>Contoh Acceptance Criteria</h2>
+                <div class="code-block">
+Given: A student is logged in<br>
+When: They search for "Java Programming"<br>
+Then: They should see a list of books related to Java Programming<br>
+And: The results should be sorted by relevance<br>
+And: Each result should show title, author, and availability
+                </div>
+            </section>
+
+            <!-- Use Cases -->
+            <section>
+                <h2>Use Cases</h2>
+                <div class="use-case-card">
+                    <h4>Komponen Use Case</h4>
+                    <ul>
+                        <li>Use Case Name</li>
+                        <li>Actor</li>
+                        <li>Precondition</li>
+                        <li>Postcondition</li>
+                        <li>Main Flow</li>
+                        <li>Alternative Flows</li>
+                        <li>Exception Flows</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Use Case Example -->
+            <section>
+                <h2>Contoh Use Case</h2>
+                <div class="use-case-card">
+                    <h4>Use Case: Borrow Book</h4>
+                    <p><strong>Actor:</strong> Student</p>
+                    <p><strong>Precondition:</strong> Student is logged in and book is available</p>
+                    <p><strong>Postcondition:</strong> Book is borrowed and due date is set</p>
+                </div>
+            </section>
+
+            <!-- Use Case Flows -->
+            <section>
+                <h2>Use Case Flows</h2>
+                <h3>Main Flow:</h3>
+                <ol>
+                    <li class="fragment">Student searches for book</li>
+                    <li class="fragment">Student selects book</li>
+                    <li class="fragment">System checks availability</li>
+                    <li class="fragment">System creates borrowing record</li>
+                    <li class="fragment">System sets due date</li>
+                    <li class="fragment">System confirms borrowing</li>
+                </ol>
+            </section>
+
+            <!-- Alternative Flows -->
+            <section>
+                <h2>Alternative Flows</h2>
+                <ul>
+                    <li class="fragment"><strong>A1:</strong> Book is not available</li>
+                    <li class="fragment"><strong>A2:</strong> Student has reached borrowing limit</li>
+                </ul>
+                
+                <h3>Exception Flows:</h3>
+                <ul>
+                    <li class="fragment"><strong>E1:</strong> Student account is blocked</li>
+                    <li class="fragment"><strong>E2:</strong> System error occurs</li>
+                </ul>
+            </section>
+
+            <!-- Requirements Traceability -->
+            <section>
+                <h2>Requirements Traceability</h2>
+                <div class="traceability-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Source</th>
+                                <th>Component</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Test Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REQ-001</td>
+                                <td>User Story</td>
+                                <td>UI</td>
+                                <td>High</td>
+                                <td>Approved</td>
+                                <td>TC-001</td>
+                            </tr>
+                            <tr>
+                                <td>REQ-002</td>
+                                <td>Business Rule</td>
+                                <td>Business Logic</td>
+                                <td>Medium</td>
+                                <td>Pending</td>
+                                <td>TC-002</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Traceability Benefits -->
+            <section>
+                <h2>Traceability Benefits</h2>
+                <ul>
+                    <li class="fragment"><strong>Change Impact Analysis:</strong> Dampak perubahan requirements</li>
+                    <li class="fragment"><strong>Coverage Analysis:</strong> Cakupan testing</li>
+                    <li class="fragment"><strong>Compliance:</strong> Memenuhi standar dan regulasi</li>
+                    <li class="fragment"><strong>Quality Assurance:</strong> Memastikan semua requirements terpenuhi</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: SRS Creation</h4>
+                    <p><strong>Tugas:</strong> Buat SRS untuk sistem perpustakaan digital</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat struktur SRS lengkap</li>
+                        <li>Tulis functional requirements (minimal 10)</li>
+                        <li>Tulis non-functional requirements (minimal 5)</li>
+                        <li>Definisikan interface requirements</li>
+                        <li>Buat glossary dan references</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: User Stories</h4>
+                    <p><strong>Tugas:</strong> Tulis user stories untuk fitur-fitur utama</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi user types</li>
+                        <li>Tulis user stories untuk setiap user type</li>
+                        <li>Buat acceptance criteria untuk setiap story</li>
+                        <li>Prioritize user stories</li>
+                        <li>Estimate story points</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Use Cases</h4>
+                    <p><strong>Tugas:</strong> Buat use cases untuk proses utama</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi actors</li>
+                        <li>Buat use case diagram</li>
+                        <li>Tulis detail use cases (minimal 5)</li>
+                        <li>Definisikan flows (main, alternative, exception)</li>
+                        <li>Buat use case documentation</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Traceability Matrix</h4>
+                    <p><strong>Tugas:</strong> Buat traceability matrix lengkap</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Assign unique ID untuk setiap requirement</li>
+                        <li>Link requirements dengan source</li>
+                        <li>Map ke komponen sistem</li>
+                        <li>Link dengan test cases</li>
+                        <li>Buat traceability report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Dokumentasi Spesifikasi</h2>
+                <p>SRS untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- SRS Introduction -->
+            <section>
+                <h2>1. Introduction</h2>
+                <div class="srs-card">
+                    <h4>Purpose</h4>
+                    <p>Dokumen ini mendefinisikan requirements untuk Sistem Manajemen Perpustakaan Digital yang akan mengotomasi operasional perpustakaan universitas.</p>
+                    
+                    <h4>Scope</h4>
+                    <p>Sistem mencakup manajemen koleksi, peminjaman, pengembalian, reservasi, dan pelaporan.</p>
+                </div>
+            </section>
+
+            <!-- Functional Requirements -->
+            <section>
+                <h2>2. Functional Requirements</h2>
+                <h3>REQ-001: User Authentication</h3>
+                <ul>
+                    <li>System shall allow users to login with username/password</li>
+                    <li>System shall support role-based access control</li>
+                    <li>System shall maintain session timeout</li>
+                </ul>
+                
+                <h3>REQ-002: Book Search</h3>
+                <ul>
+                    <li>System shall allow search by title, author, ISBN</li>
+                    <li>System shall support advanced search with filters</li>
+                    <li>System shall display search results with pagination</li>
+                </ul>
+            </section>
+
+            <!-- More Functional Requirements -->
+            <section>
+                <h2>Functional Requirements (Lanjutan)</h2>
+                <h3>REQ-003: Book Borrowing</h3>
+                <ul>
+                    <li>System shall allow students to borrow books</li>
+                    <li>System shall check borrowing limits</li>
+                    <li>System shall set due dates automatically</li>
+                </ul>
+                
+                <h3>REQ-004: Book Return</h3>
+                <ul>
+                    <li>System shall allow students to return books</li>
+                    <li>System shall calculate fines for overdue books</li>
+                    <li>System shall update book availability</li>
+                </ul>
+            </section>
+
+            <!-- Non-Functional Requirements -->
+            <section>
+                <h2>3. Non-Functional Requirements</h2>
+                <h3>REQ-NF-001: Performance</h3>
+                <ul>
+                    <li>System shall respond within 2 seconds for 95% of requests</li>
+                    <li>System shall support 100 concurrent users</li>
+                    <li>System shall handle 10,000 books in database</li>
+                </ul>
+                
+                <h3>REQ-NF-002: Security</h3>
+                <ul>
+                    <li>System shall encrypt sensitive data</li>
+                    <li>System shall implement role-based access control</li>
+                    <li>System shall maintain audit logs</li>
+                </ul>
+            </section>
+
+            <!-- User Stories -->
+            <section>
+                <h2>4. User Stories</h2>
+                <h3>Epic 1: Book Management</h3>
+                <ul>
+                    <li>As a librarian, I want to add new books to the system</li>
+                    <li>As a librarian, I want to update book information</li>
+                    <li>As a librarian, I want to remove books from the system</li>
+                </ul>
+                
+                <h3>Epic 2: User Management</h3>
+                <ul>
+                    <li>As an administrator, I want to create user accounts</li>
+                    <li>As an administrator, I want to manage user roles</li>
+                    <li>As an administrator, I want to deactivate user accounts</li>
+                </ul>
+            </section>
+
+            <!-- More User Stories -->
+            <section>
+                <h2>User Stories (Lanjutan)</h2>
+                <h3>Epic 3: Borrowing Process</h3>
+                <ul>
+                    <li>As a student, I want to search for books</li>
+                    <li>As a student, I want to borrow books</li>
+                    <li>As a student, I want to return books</li>
+                    <li>As a student, I want to reserve books</li>
+                </ul>
+            </section>
+
+            <!-- Use Cases -->
+            <section>
+                <h2>5. Use Cases</h2>
+                <h3>UC-001: Borrow Book</h3>
+                <ul>
+                    <li><strong>Actor:</strong> Student</li>
+                    <li><strong>Precondition:</strong> Student is logged in, book is available</li>
+                    <li><strong>Main Flow:</strong> Search → Select → Borrow → Confirm</li>
+                    <li><strong>Alternative:</strong> Book not available → Reserve</li>
+                    <li><strong>Exception:</strong> Account blocked → Show error</li>
+                </ul>
+            </section>
+
+            <!-- More Use Cases -->
+            <section>
+                <h2>Use Cases (Lanjutan)</h2>
+                <h3>UC-002: Return Book</h3>
+                <ul>
+                    <li><strong>Actor:</strong> Student</li>
+                    <li><strong>Precondition:</strong> Student has borrowed books</li>
+                    <li><strong>Main Flow:</strong> Select book → Return → Calculate fine → Confirm</li>
+                    <li><strong>Alternative:</strong> No fine → Direct return</li>
+                    <li><strong>Exception:</strong> Book damaged → Report damage</li>
+                </ul>
+            </section>
+
+            <!-- Traceability Matrix -->
+            <section>
+                <h2>6. Traceability Matrix</h2>
+                <div class="traceability-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Requirement</th>
+                                <th>Source</th>
+                                <th>Component</th>
+                                <th>Priority</th>
+                                <th>Test Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REQ-001</td>
+                                <td>User Authentication</td>
+                                <td>User Story</td>
+                                <td>Security</td>
+                                <td>High</td>
+                                <td>TC-001</td>
+                            </tr>
+                            <tr>
+                                <td>REQ-002</td>
+                                <td>Book Search</td>
+                                <td>User Story</td>
+                                <td>UI</td>
+                                <td>High</td>
+                                <td>TC-002</td>
+                            </tr>
+                            <tr>
+                                <td>REQ-003</td>
+                                <td>Book Borrowing</td>
+                                <td>User Story</td>
+                                <td>Business Logic</td>
+                                <td>High</td>
+                                <td>TC-003</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 6</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Software Requirements Specification</strong> - Dokumen SRS lengkap</li>
+                        <li><strong>User Stories</strong> - User stories dengan acceptance criteria</li>
+                        <li><strong>Use Cases</strong> - Use cases detail dengan flows</li>
+                        <li><strong>Traceability Matrix</strong> - Matrix traceability requirements</li>
+                        <li><strong>Requirements Review</strong> - Review dan validation requirements</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu membuat SRS yang komprehensif</li>
+                        <li>Mampu menulis user stories yang efektif</li>
+                        <li>Mampu membuat use cases yang detail</li>
+                        <li>Mampu mendefinisikan acceptance criteria</li>
+                        <li>Mampu membuat traceability matrix</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ieee.org/" target="_blank">IEEE 830 - SRS Standard</a></li>
+                    <li><a href="https://www.jpattonassociates.com/user-story-mapping/" target="_blank">User Story Mapping</a></li>
+                    <li><a href="https://www.omg.org/" target="_blank">Use Case Best Practices</a></li>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Traceability</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-05-negosiasi-kebutuhan.html">← Unit 5 - Negosiasi Kebutuhan</a></p>
+                <p><a href="unit-07-software-environment.html">Unit 7 - Software Environment →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 9: Review Kebutuhan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .review-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .review-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .review-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .informal, .reveal .formal {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .informal {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .formal {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .review-process {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .process-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .reveal .process-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .checklist-item {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .checklist-item h5 {
+            color: #495057;
+            margin-top: 0;
+        }
+        .reveal .prototype-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .ui-prototype, .reveal .functional-prototype, .reveal .technical-prototype {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .ui-prototype {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .functional-prototype {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+        }
+        .reveal .technical-prototype {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .technique-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .technique-item {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .reveal .technique-item h5 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 9</h1>
+                <h2>Meninjau Ulang (Review) Kebutuhan Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.009.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Melakukan review requirements yang efektif</li>
+                    <li class="fragment">Mengidentifikasi issues dan gaps dalam requirements</li>
+                    <li class="fragment">Membuat review checklist yang komprehensif</li>
+                    <li class="fragment">Melakukan prototype validation</li>
+                    <li class="fragment">Membuat review report yang detail</li>
+                </ul>
+            </section>
+
+            <!-- Requirements Review Overview -->
+            <section>
+                <h2>Requirements Review Overview</h2>
+                <div class="review-card">
+                    <h4>Tujuan Review</h4>
+                    <ul>
+                        <li><strong>Quality Assurance:</strong> Memastikan kualitas requirements</li>
+                        <li><strong>Completeness:</strong> Memastikan requirements lengkap</li>
+                        <li><strong>Consistency:</strong> Memastikan requirements konsisten</li>
+                        <li><strong>Clarity:</strong> Memastikan requirements jelas dan tidak ambigu</li>
+                        <li><strong>Feasibility:</strong> Memastikan requirements dapat diimplementasi</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Jenis Review -->
+            <section>
+                <h2>Jenis Review</h2>
+                <div class="review-types">
+                    <div class="informal">
+                        <h4>Informal Review</h4>
+                        <ul>
+                            <li>Peer review</li>
+                            <li>Walkthrough</li>
+                            <li>Ad-hoc review</li>
+                            <li>Quick check</li>
+                        </ul>
+                    </div>
+                    <div class="formal">
+                        <h4>Formal Review</h4>
+                        <ul>
+                            <li>Inspection</li>
+                            <li>Technical review</li>
+                            <li>Management review</li>
+                            <li>Customer review</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Review Process -->
+            <section>
+                <h2>Review Process</h2>
+                <div class="review-process">
+                    <div class="process-item">
+                        <h5>Preparation Phase</h5>
+                        <ul>
+                            <li>Review Planning</li>
+                            <li>Material Preparation</li>
+                            <li>Reviewer Selection</li>
+                            <li>Schedule Review</li>
+                        </ul>
+                    </div>
+                    <div class="process-item">
+                        <h5>Review Session</h5>
+                        <ul>
+                            <li>Opening</li>
+                            <li>Review Process</li>
+                            <li>Issue Identification</li>
+                            <li>Closing</li>
+                        </ul>
+                    </div>
+                    <div class="process-item">
+                        <h5>Follow-up Phase</h5>
+                        <ul>
+                            <li>Issue Resolution</li>
+                            <li>Requirements Update</li>
+                            <li>Re-review</li>
+                            <li>Documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preparation Phase -->
+            <section>
+                <h2>Preparation Phase</h2>
+                <h3>Review Planning</h3>
+                <ul>
+                    <li class="fragment">Tentukan scope review</li>
+                    <li class="fragment">Pilih reviewers</li>
+                    <li class="fragment">Siapkan materials</li>
+                    <li class="fragment">Jadwalkan review session</li>
+                </ul>
+                
+                <h3>Material Preparation</h3>
+                <ul>
+                    <li class="fragment">Requirements document</li>
+                    <li class="fragment">Supporting documents</li>
+                    <li class="fragment">Review checklist</li>
+                    <li class="fragment">Review agenda</li>
+                </ul>
+            </section>
+
+            <!-- Review Session -->
+            <section>
+                <h2>Review Session</h2>
+                <h3>Opening</h3>
+                <ul>
+                    <li class="fragment">Introduction</li>
+                    <li class="fragment">Review objectives</li>
+                    <li class="fragment">Review process</li>
+                    <li class="fragment">Ground rules</li>
+                </ul>
+                
+                <h3>Review Process</h3>
+                <ul>
+                    <li class="fragment">Read requirements</li>
+                    <li class="fragment">Identify issues</li>
+                    <li class="fragment">Discuss issues</li>
+                    <li class="fragment">Record findings</li>
+                </ul>
+            </section>
+
+            <!-- Closing -->
+            <section>
+                <h2>Closing</h2>
+                <ul>
+                    <li class="fragment">Summary of findings</li>
+                    <li class="fragment">Action items</li>
+                    <li class="fragment">Next steps</li>
+                    <li class="fragment">Follow-up plan</li>
+                </ul>
+            </section>
+
+            <!-- Follow-up Phase -->
+            <section>
+                <h2>Follow-up Phase</h2>
+                <h3>Issue Resolution</h3>
+                <ul>
+                    <li class="fragment">Address identified issues</li>
+                    <li class="fragment">Update requirements</li>
+                    <li class="fragment">Validate fixes</li>
+                    <li class="fragment">Re-review if necessary</li>
+                </ul>
+                
+                <h3>Documentation</h3>
+                <ul>
+                    <li class="fragment">Review minutes</li>
+                    <li class="fragment">Issue log</li>
+                    <li class="fragment">Action items</li>
+                    <li class="fragment">Review report</li>
+                </ul>
+            </section>
+
+            <!-- Review Checklist -->
+            <section>
+                <h2>Review Checklist</h2>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <h5>Completeness Checklist</h5>
+                        <ul>
+                            <li>All functional requirements covered</li>
+                            <li>All non-functional requirements covered</li>
+                            <li>All business rules defined</li>
+                            <li>All constraints identified</li>
+                            <li>All assumptions documented</li>
+                        </ul>
+                    </div>
+                    <div class="checklist-item">
+                        <h5>Consistency Checklist</h5>
+                        <ul>
+                            <li>No conflicting requirements</li>
+                            <li>Consistent terminology used</li>
+                            <li>Consistent level of detail</li>
+                            <li>Consistent format</li>
+                            <li>Consistent numbering</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More Checklists -->
+            <section>
+                <h2>Review Checklist (Lanjutan)</h2>
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <h5>Clarity Checklist</h5>
+                        <ul>
+                            <li>Requirements are unambiguous</li>
+                            <li>Requirements are specific</li>
+                            <li>Requirements are measurable</li>
+                            <li>Requirements are testable</li>
+                            <li>Requirements are understandable</li>
+                        </ul>
+                    </div>
+                    <div class="checklist-item">
+                        <h5>Traceability Checklist</h5>
+                        <ul>
+                            <li>Requirements traceable to source</li>
+                            <li>Requirements traceable to design</li>
+                            <li>Requirements traceable to test cases</li>
+                            <li>Requirements traceable to user stories</li>
+                            <li>Requirements traceable to use cases</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prototype Validation -->
+            <section>
+                <h2>Prototype Validation</h2>
+                <div class="prototype-types">
+                    <div class="ui-prototype">
+                        <h4>UI Prototype</h4>
+                        <ul>
+                            <li>User interface mockups</li>
+                            <li>Navigation flow</li>
+                            <li>User experience</li>
+                            <li>Visual design</li>
+                        </ul>
+                    </div>
+                    <div class="functional-prototype">
+                        <h4>Functional Prototype</h4>
+                        <ul>
+                            <li>Working features</li>
+                            <li>Business logic</li>
+                            <li>Data flow</li>
+                            <li>Integration</li>
+                        </ul>
+                    </div>
+                    <div class="technical-prototype">
+                        <h4>Technical Prototype</h4>
+                        <ul>
+                            <li>Architecture proof</li>
+                            <li>Performance validation</li>
+                            <li>Security testing</li>
+                            <li>Scalability testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Validation Process -->
+            <section>
+                <h2>Validation Process</h2>
+                <h3>Prototype Development</h3>
+                <ul>
+                    <li class="fragment">Create prototype</li>
+                    <li class="fragment">Test functionality</li>
+                    <li class="fragment">Validate design</li>
+                    <li class="fragment">Document findings</li>
+                </ul>
+                
+                <h3>User Testing</h3>
+                <ul>
+                    <li class="fragment">User feedback</li>
+                    <li class="fragment">Usability testing</li>
+                    <li class="fragment">Acceptance testing</li>
+                    <li class="fragment">Issue identification</li>
+                </ul>
+            </section>
+
+            <!-- Validation Results -->
+            <section>
+                <h2>Validation Results</h2>
+                <ul>
+                    <li class="fragment">Feedback analysis</li>
+                    <li class="fragment">Issue resolution</li>
+                    <li class="fragment">Requirements update</li>
+                    <li class="fragment">Validation report</li>
+                </ul>
+            </section>
+
+            <!-- Review Techniques -->
+            <section>
+                <h2>Review Techniques</h2>
+                <div class="technique-grid">
+                    <div class="technique-item">
+                        <h5>Walkthrough</h5>
+                        <ul>
+                            <li>Presenter explains requirements</li>
+                            <li>Reviewers ask questions</li>
+                            <li>Issues are identified</li>
+                            <li>Discussion and resolution</li>
+                        </ul>
+                    </div>
+                    <div class="technique-item">
+                        <h5>Inspection</h5>
+                        <ul>
+                            <li>Individual review</li>
+                            <li>Issue identification</li>
+                            <li>Issue logging</li>
+                            <li>Group discussion</li>
+                        </ul>
+                    </div>
+                    <div class="technique-item">
+                        <h5>Peer Review</h5>
+                        <ul>
+                            <li>Peer examination</li>
+                            <li>Feedback provision</li>
+                            <li>Issue discussion</li>
+                            <li>Resolution planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits -->
+            <section>
+                <h2>Benefits of Review Techniques</h2>
+                <h3>Walkthrough Benefits</h3>
+                <ul>
+                    <li class="fragment">Interactive discussion</li>
+                    <li class="fragment">Immediate feedback</li>
+                    <li class="fragment">Knowledge sharing</li>
+                    <li class="fragment">Issue identification</li>
+                </ul>
+                
+                <h3>Inspection Benefits</h3>
+                <ul>
+                    <li class="fragment">Thorough review</li>
+                    <li class="fragment">Detailed analysis</li>
+                    <li class="fragment">Quality assurance</li>
+                    <li class="fragment">Knowledge transfer</li>
+                </ul>
+            </section>
+
+            <!-- Peer Review Benefits -->
+            <section>
+                <h2>Peer Review Benefits</h2>
+                <ul>
+                    <li class="fragment">Expert review</li>
+                    <li class="fragment">Quality assurance</li>
+                    <li class="fragment">Knowledge sharing</li>
+                    <li class="fragment">Continuous improvement</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Review Planning</h4>
+                    <p><strong>Tugas:</strong> Buat rencana review untuk requirements sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Tentukan scope review</li>
+                        <li>Pilih reviewers</li>
+                        <li>Siapkan materials</li>
+                        <li>Buat review agenda</li>
+                        <li>Jadwalkan review session</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Review Checklist</h4>
+                    <p><strong>Tugas:</strong> Buat review checklist yang komprehensif</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat completeness checklist</li>
+                        <li>Buat consistency checklist</li>
+                        <li>Buat clarity checklist</li>
+                        <li>Buat traceability checklist</li>
+                        <li>Validasi checklist dengan stakeholders</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Review Session</h4>
+                    <p><strong>Tugas:</strong> Lakukan review session dengan stakeholders</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Siapkan review materials</li>
+                        <li>Lakukan review session</li>
+                        <li>Identifikasi issues</li>
+                        <li>Diskusikan findings</li>
+                        <li>Buat action items</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Prototype Validation</h4>
+                    <p><strong>Tugas:</strong> Buat prototype dan lakukan validation</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat UI prototype</li>
+                        <li>Test dengan users</li>
+                        <li>Kumpulkan feedback</li>
+                        <li>Analisis results</li>
+                        <li>Update requirements</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Requirements Review</h2>
+                <p>Review Plan untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- Review Scope -->
+            <section>
+                <h2>1. Review Scope</h2>
+                <h3>Documents to Review</h3>
+                <ul>
+                    <li class="fragment">Software Requirements Specification</li>
+                    <li class="fragment">User Stories</li>
+                    <li class="fragment">Use Cases</li>
+                    <li class="fragment">Business Rules</li>
+                    <li class="fragment">Constraints and Assumptions</li>
+                </ul>
+            </section>
+
+            <!-- Reviewers -->
+            <section>
+                <h2>Reviewers</h2>
+                <ul>
+                    <li class="fragment"><strong>Business Analyst</strong> (Lead)</li>
+                    <li class="fragment"><strong>Librarian</strong> (Domain Expert)</li>
+                    <li class="fragment"><strong>IT Manager</strong> (Technical Expert)</li>
+                    <li class="fragment"><strong>Student Representative</strong> (End User)</li>
+                    <li class="fragment"><strong>Project Manager</strong> (Management)</li>
+                </ul>
+            </section>
+
+            <!-- Review Schedule -->
+            <section>
+                <h2>Review Schedule</h2>
+                <h3>Week 1: Preparation</h3>
+                <ul>
+                    <li class="fragment">Review materials preparation</li>
+                    <li class="fragment">Reviewer selection</li>
+                    <li class="fragment">Review agenda creation</li>
+                    <li class="fragment">Review session scheduling</li>
+                </ul>
+                
+                <h3>Week 2: Review Sessions</h3>
+                <ul>
+                    <li class="fragment">Day 1: Functional requirements review</li>
+                    <li class="fragment">Day 2: Non-functional requirements review</li>
+                    <li class="fragment">Day 3: Business rules review</li>
+                    <li class="fragment">Day 4: Constraints and assumptions review</li>
+                    <li class="fragment">Day 5: Overall requirements review</li>
+                </ul>
+            </section>
+
+            <!-- Week 3 -->
+            <section>
+                <h2>Week 3: Follow-up</h2>
+                <ul>
+                    <li class="fragment">Issue resolution</li>
+                    <li class="fragment">Requirements update</li>
+                    <li class="fragment">Re-review if necessary</li>
+                    <li class="fragment">Final validation</li>
+                </ul>
+            </section>
+
+            <!-- Review Checklist -->
+            <section>
+                <h2>Review Checklist</h2>
+                <h3>Completeness Checklist</h3>
+                <ul>
+                    <li class="fragment">All user stories covered</li>
+                    <li class="fragment">All use cases defined</li>
+                    <li class="fragment">All business rules specified</li>
+                    <li class="fragment">All constraints identified</li>
+                    <li class="fragment">All assumptions documented</li>
+                </ul>
+            </section>
+
+            <!-- Consistency Checklist -->
+            <section>
+                <h2>Consistency Checklist</h2>
+                <ul>
+                    <li class="fragment">No conflicting requirements</li>
+                    <li class="fragment">Consistent terminology</li>
+                    <li class="fragment">Consistent level of detail</li>
+                    <li class="fragment">Consistent format</li>
+                    <li class="fragment">Consistent numbering</li>
+                </ul>
+            </section>
+
+            <!-- Clarity Checklist -->
+            <section>
+                <h2>Clarity Checklist</h2>
+                <ul>
+                    <li class="fragment">Requirements unambiguous</li>
+                    <li class="fragment">Requirements specific</li>
+                    <li class="fragment">Requirements measurable</li>
+                    <li class="fragment">Requirements testable</li>
+                    <li class="fragment">Requirements understandable</li>
+                </ul>
+            </section>
+
+            <!-- Traceability Checklist -->
+            <section>
+                <h2>Traceability Checklist</h2>
+                <ul>
+                    <li class="fragment">Requirements traceable to source</li>
+                    <li class="fragment">Requirements traceable to design</li>
+                    <li class="fragment">Requirements traceable to test cases</li>
+                    <li class="fragment">Requirements traceable to user stories</li>
+                    <li class="fragment">Requirements traceable to use cases</li>
+                </ul>
+            </section>
+
+            <!-- Prototype Validation -->
+            <section>
+                <h2>Prototype Validation</h2>
+                <h3>UI Prototype</h3>
+                <ul>
+                    <li class="fragment">User login interface</li>
+                    <li class="fragment">Book search interface</li>
+                    <li class="fragment">Book borrowing interface</li>
+                    <li class="fragment">Book return interface</li>
+                    <li class="fragment">User profile interface</li>
+                </ul>
+            </section>
+
+            <!-- Functional Prototype -->
+            <section>
+                <h2>Functional Prototype</h2>
+                <ul>
+                    <li class="fragment">Book search functionality</li>
+                    <li class="fragment">Book borrowing process</li>
+                    <li class="fragment">Book return process</li>
+                    <li class="fragment">Fine calculation</li>
+                    <li class="fragment">Reservation system</li>
+                </ul>
+            </section>
+
+            <!-- Review Results -->
+            <section>
+                <h2>Review Results</h2>
+                <h3>Issues Identified</h3>
+                <ul>
+                    <li class="fragment"><strong>High Priority:</strong> Missing security requirements</li>
+                    <li class="fragment"><strong>High Priority:</strong> Unclear fine calculation rules</li>
+                    <li class="fragment"><strong>Medium Priority:</strong> Inconsistent terminology</li>
+                    <li class="fragment"><strong>Medium Priority:</strong> Missing performance requirements</li>
+                    <li class="fragment"><strong>Low Priority:</strong> Format inconsistencies</li>
+                </ul>
+            </section>
+
+            <!-- Action Items -->
+            <section>
+                <h2>Action Items</h2>
+                <h3>Immediate Actions</h3>
+                <ul>
+                    <li class="fragment">Add security requirements</li>
+                    <li class="fragment">Clarify fine calculation rules</li>
+                    <li class="fragment">Complete UI specifications</li>
+                    <li class="fragment">Add error handling requirements</li>
+                </ul>
+                
+                <h3>Short-term Actions</h3>
+                <ul>
+                    <li class="fragment">Standardize terminology</li>
+                    <li class="fragment">Add performance requirements</li>
+                    <li class="fragment">Clarify business rules</li>
+                    <li class="fragment">Add integration requirements</li>
+                </ul>
+            </section>
+
+            <!-- Validation Results -->
+            <section>
+                <h2>Validation Results</h2>
+                <h3>UI Prototype Validation</h3>
+                <ul>
+                    <li class="fragment">Users found interface intuitive</li>
+                    <li class="fragment">Navigation flow is clear</li>
+                    <li class="fragment">Visual design is appealing</li>
+                    <li class="fragment">Mobile responsiveness is good</li>
+                </ul>
+                
+                <h3>Functional Prototype Validation</h3>
+                <ul>
+                    <li class="fragment">Business logic works correctly</li>
+                    <li class="fragment">Data flow is accurate</li>
+                    <li class="fragment">Integration works properly</li>
+                    <li class="fragment">Performance is acceptable</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 9</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Review Plan</strong> - Rencana review lengkap</li>
+                        <li><strong>Review Checklist</strong> - Checklist review komprehensif</li>
+                        <li><strong>Review Minutes</strong> - Minutes review session</li>
+                        <li><strong>Issue Log</strong> - Log issues yang ditemukan</li>
+                        <li><strong>Review Report</strong> - Laporan review lengkap</li>
+                        <li><strong>Prototype Validation Report</strong> - Laporan validasi prototype</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu melakukan review requirements yang efektif</li>
+                        <li>Mampu mengidentifikasi issues dan gaps</li>
+                        <li>Mampu membuat review checklist yang komprehensif</li>
+                        <li>Mampu melakukan prototype validation</li>
+                        <li>Mampu membuat review report yang detail</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Review Best Practices</a></li>
+                    <li><a href="https://www.ieee.org/" target="_blank">Software Inspection Techniques</a></li>
+                    <li><a href="https://www.nngroup.com/" target="_blank">Prototype Validation Methods</a></li>
+                    <li><a href="https://www.pmi.org/" target="_blank">Quality Assurance in Requirements</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-08-spesifikasi-kebutuhan.html">← Unit 8 - Spesifikasi Kebutuhan</a></p>
+                <p><a href="unit-10-validasi-spesifikasi.html">Unit 10 - Validasi Spesifikasi →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

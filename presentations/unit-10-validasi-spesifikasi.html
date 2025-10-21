@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 10: Validasi Spesifikasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .validation-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .validation-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .validation-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .static, .reveal .dynamic {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .static {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .dynamic {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .test-case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .test-case-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .test-case-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .uat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .uat-item {
+            background: #fff3cd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .uat-item h5 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .gap-analysis {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .requirements-gaps, .reveal .implementation-gaps, .reveal .user-experience-gaps {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .requirements-gaps {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .implementation-gaps {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .user-experience-gaps {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+        }
+        .reveal .test-results-table {
+            overflow-x: auto;
+        }
+        .reveal .test-results-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .test-results-table th,
+        .reveal .test-results-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .test-results-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 10</h1>
+                <h2>Melakukan Validasi Spesifikasi dan Menyusun Uji Penerimaan Pengguna</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.010.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Melakukan validasi spesifikasi requirements</li>
+                    <li class="fragment">Membuat test cases yang komprehensif</li>
+                    <li class="fragment">Melakukan user acceptance testing</li>
+                    <li class="fragment">Mengidentifikasi gaps dalam requirements</li>
+                    <li class="fragment">Membuat validation report yang detail</li>
+                </ul>
+            </section>
+
+            <!-- Requirements Validation Overview -->
+            <section>
+                <h2>Requirements Validation Overview</h2>
+                <div class="validation-card">
+                    <h4>Tujuan Validasi</h4>
+                    <ul>
+                        <li><strong>Correctness:</strong> Memastikan requirements benar</li>
+                        <li><strong>Completeness:</strong> Memastikan requirements lengkap</li>
+                        <li><strong>Consistency:</strong> Memastikan requirements konsisten</li>
+                        <li><strong>Feasibility:</strong> Memastikan requirements dapat diimplementasi</li>
+                        <li><strong>Testability:</strong> Memastikan requirements dapat diuji</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Jenis Validasi -->
+            <section>
+                <h2>Jenis Validasi</h2>
+                <div class="validation-types">
+                    <div class="static">
+                        <h4>Static Validation</h4>
+                        <ul>
+                            <li>Document review</li>
+                            <li>Requirements analysis</li>
+                            <li>Consistency checking</li>
+                            <li>Completeness checking</li>
+                        </ul>
+                    </div>
+                    <div class="dynamic">
+                        <h4>Dynamic Validation</h4>
+                        <ul>
+                            <li>Prototype testing</li>
+                            <li>User testing</li>
+                            <li>Acceptance testing</li>
+                            <li>Performance testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Validation Techniques -->
+            <section>
+                <h2>Validation Techniques</h2>
+                <h3>Requirements Analysis</h3>
+                <ul>
+                    <li class="fragment"><strong>Completeness Analysis:</strong> Check all requirements covered</li>
+                    <li class="fragment"><strong>Consistency Analysis:</strong> Check for conflicts</li>
+                    <li class="fragment"><strong>Correctness Analysis:</strong> Validate requirement accuracy</li>
+                </ul>
+            </section>
+
+            <!-- Prototype Validation -->
+            <section>
+                <h2>Prototype Validation</h2>
+                <h3>UI Prototype</h3>
+                <ul>
+                    <li class="fragment">User interface testing</li>
+                    <li class="fragment">Navigation testing</li>
+                    <li class="fragment">Usability testing</li>
+                    <li class="fragment">Accessibility testing</li>
+                </ul>
+                
+                <h3>Functional Prototype</h3>
+                <ul>
+                    <li class="fragment">Feature testing</li>
+                    <li class="fragment">Business logic testing</li>
+                    <li class="fragment">Integration testing</li>
+                    <li class="fragment">Performance testing</li>
+                </ul>
+            </section>
+
+            <!-- Technical Prototype -->
+            <section>
+                <h2>Technical Prototype</h2>
+                <ul>
+                    <li class="fragment">Architecture validation</li>
+                    <li class="fragment">Security testing</li>
+                    <li class="fragment">Scalability testing</li>
+                    <li class="fragment">Performance validation</li>
+                </ul>
+            </section>
+
+            <!-- Test Case Development -->
+            <section>
+                <h2>Test Case Development</h2>
+                <div class="validation-card">
+                    <h4>Test Case Components</h4>
+                    <ul>
+                        <li><strong>Test Case ID:</strong> Unique identifier</li>
+                        <li><strong>Test Case Name:</strong> Descriptive name</li>
+                        <li><strong>Objective:</strong> What to test</li>
+                        <li><strong>Precondition:</strong> Initial state</li>
+                        <li><strong>Test Steps:</strong> Detailed steps</li>
+                        <li><strong>Expected Result:</strong> Expected outcome</li>
+                        <li><strong>Actual Result:</strong> Actual outcome</li>
+                        <li><strong>Status:</strong> Pass/Fail/Blocked</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Test Case Types -->
+            <section>
+                <h2>Test Case Types</h2>
+                <div class="test-case-grid">
+                    <div class="test-case-item">
+                        <h5>Functional Test Cases</h5>
+                        <ul>
+                            <li>Feature testing</li>
+                            <li>Business logic testing</li>
+                            <li>Integration testing</li>
+                            <li>User workflow testing</li>
+                        </ul>
+                    </div>
+                    <div class="test-case-item">
+                        <h5>Non-Functional Test Cases</h5>
+                        <ul>
+                            <li>Performance testing</li>
+                            <li>Security testing</li>
+                            <li>Usability testing</li>
+                            <li>Compatibility testing</li>
+                        </ul>
+                    </div>
+                    <div class="test-case-item">
+                        <h5>User Acceptance Test Cases</h5>
+                        <ul>
+                            <li>End-to-end testing</li>
+                            <li>User scenario testing</li>
+                            <li>Business process testing</li>
+                            <li>Acceptance criteria testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Acceptance Testing -->
+            <section>
+                <h2>User Acceptance Testing (UAT)</h2>
+                <div class="uat-grid">
+                    <div class="uat-item">
+                        <h5>UAT Planning</h5>
+                        <ul>
+                            <li>UAT Objectives</li>
+                            <li>UAT Scope</li>
+                            <li>UAT Participants</li>
+                        </ul>
+                    </div>
+                    <div class="uat-item">
+                        <h5>UAT Process</h5>
+                        <ul>
+                            <li>Preparation</li>
+                            <li>Execution</li>
+                            <li>Follow-up</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UAT Objectives -->
+            <section>
+                <h2>UAT Objectives</h2>
+                <ul>
+                    <li class="fragment">Validate business requirements</li>
+                    <li class="fragment">Test user workflows</li>
+                    <li class="fragment">Verify acceptance criteria</li>
+                    <li class="fragment">Ensure user satisfaction</li>
+                </ul>
+            </section>
+
+            <!-- UAT Scope -->
+            <section>
+                <h2>UAT Scope</h2>
+                <ul>
+                    <li class="fragment">Critical business processes</li>
+                    <li class="fragment">Key user workflows</li>
+                    <li class="fragment">Acceptance criteria</li>
+                    <li class="fragment">User scenarios</li>
+                </ul>
+            </section>
+
+            <!-- UAT Participants -->
+            <section>
+                <h2>UAT Participants</h2>
+                <ul>
+                    <li class="fragment">End users</li>
+                    <li class="fragment">Business stakeholders</li>
+                    <li class="fragment">Subject matter experts</li>
+                    <li class="fragment">Test coordinators</li>
+                </ul>
+            </section>
+
+            <!-- UAT Process -->
+            <section>
+                <h2>UAT Process</h2>
+                <h3>Preparation</h3>
+                <ul>
+                    <li class="fragment">UAT plan creation</li>
+                    <li class="fragment">Test case development</li>
+                    <li class="fragment">User training</li>
+                    <li class="fragment">Environment setup</li>
+                </ul>
+                
+                <h3>Execution</h3>
+                <ul>
+                    <li class="fragment">Test case execution</li>
+                    <li class="fragment">Issue identification</li>
+                    <li class="fragment">Feedback collection</li>
+                    <li class="fragment">Result documentation</li>
+                </ul>
+            </section>
+
+            <!-- Follow-up -->
+            <section>
+                <h2>Follow-up</h2>
+                <ul>
+                    <li class="fragment">Issue resolution</li>
+                    <li class="fragment">Re-testing</li>
+                    <li class="fragment">Sign-off</li>
+                    <li class="fragment">Documentation</li>
+                </ul>
+            </section>
+
+            <!-- Gap Analysis -->
+            <section>
+                <h2>Gap Analysis</h2>
+                <div class="gap-analysis">
+                    <div class="requirements-gaps">
+                        <h4>Requirements Gaps</h4>
+                        <ul>
+                            <li>Missing requirements</li>
+                            <li>Incomplete requirements</li>
+                            <li>Unclear requirements</li>
+                            <li>Conflicting requirements</li>
+                        </ul>
+                    </div>
+                    <div class="implementation-gaps">
+                        <h4>Implementation Gaps</h4>
+                        <ul>
+                            <li>Missing features</li>
+                            <li>Incomplete functionality</li>
+                            <li>Performance gaps</li>
+                            <li>Security gaps</li>
+                        </ul>
+                    </div>
+                    <div class="user-experience-gaps">
+                        <h4>User Experience Gaps</h4>
+                        <ul>
+                            <li>Usability issues</li>
+                            <li>Navigation problems</li>
+                            <li>Accessibility issues</li>
+                            <li>User satisfaction gaps</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gap Resolution -->
+            <section>
+                <h2>Gap Resolution</h2>
+                <h3>Gap Analysis</h3>
+                <ul>
+                    <li class="fragment">Identify gap impact</li>
+                    <li class="fragment">Prioritize gaps</li>
+                    <li class="fragment">Plan resolution</li>
+                    <li class="fragment">Implement fixes</li>
+                </ul>
+                
+                <h3>Gap Validation</h3>
+                <ul>
+                    <li class="fragment">Test gap fixes</li>
+                    <li class="fragment">Validate resolution</li>
+                    <li class="fragment">Document changes</li>
+                    <li class="fragment">Update requirements</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Requirements Validation</h4>
+                    <p><strong>Tugas:</strong> Lakukan validasi requirements untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Analisis completeness requirements</li>
+                        <li>Check consistency requirements</li>
+                        <li>Validasi correctness requirements</li>
+                        <li>Identifikasi gaps</li>
+                        <li>Buat validation report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Test Case Development</h4>
+                    <p><strong>Tugas:</strong> Buat test cases untuk fitur-fitur utama</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi test scenarios</li>
+                        <li>Buat functional test cases</li>
+                        <li>Buat non-functional test cases</li>
+                        <li>Buat UAT test cases</li>
+                        <li>Validasi test cases</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: User Acceptance Testing</h4>
+                    <p><strong>Tugas:</strong> Lakukan UAT untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat UAT plan</li>
+                        <li>Siapkan test environment</li>
+                        <li>Lakukan UAT session</li>
+                        <li>Kumpulkan feedback</li>
+                        <li>Buat UAT report</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Gap Analysis</h4>
+                    <p><strong>Tugas:</strong> Lakukan gap analysis dan resolution</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi gaps</li>
+                        <li>Analisis gap impact</li>
+                        <li>Prioritize gaps</li>
+                        <li>Plan resolution</li>
+                        <li>Implement fixes</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Requirements Validation</h2>
+                <p>Validation Plan untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- Validation Scope -->
+            <section>
+                <h2>1. Validation Scope</h2>
+                <h3>Requirements to Validate</h3>
+                <ul>
+                    <li class="fragment">Functional requirements</li>
+                    <li class="fragment">Non-functional requirements</li>
+                    <li class="fragment">Business rules</li>
+                    <li class="fragment">User stories</li>
+                    <li class="fragment">Use cases</li>
+                    <li class="fragment">Acceptance criteria</li>
+                </ul>
+            </section>
+
+            <!-- Validation Methods -->
+            <section>
+                <h2>Validation Methods</h2>
+                <ul>
+                    <li class="fragment">Requirements analysis</li>
+                    <li class="fragment">Prototype validation</li>
+                    <li class="fragment">User testing</li>
+                    <li class="fragment">Acceptance testing</li>
+                    <li class="fragment">Gap analysis</li>
+                </ul>
+            </section>
+
+            <!-- Test Case Development -->
+            <section>
+                <h2>2. Test Case Development</h2>
+                <h3>Functional Test Cases</h3>
+                <ul>
+                    <li class="fragment"><strong>TC-001: User Login</strong> - Test user authentication</li>
+                    <li class="fragment"><strong>TC-002: Book Search</strong> - Test book search functionality</li>
+                    <li class="fragment"><strong>TC-003: Book Borrowing</strong> - Test book borrowing process</li>
+                    <li class="fragment"><strong>TC-004: Book Return</strong> - Test book return process</li>
+                    <li class="fragment"><strong>TC-005: Book Reservation</strong> - Test book reservation process</li>
+                </ul>
+            </section>
+
+            <!-- Non-Functional Test Cases -->
+            <section>
+                <h2>Non-Functional Test Cases</h2>
+                <ul>
+                    <li class="fragment"><strong>TC-NF-001: Performance Testing</strong> - Test system performance</li>
+                    <li class="fragment"><strong>TC-NF-002: Security Testing</strong> - Test system security</li>
+                    <li class="fragment"><strong>TC-NF-003: Usability Testing</strong> - Test user interface usability</li>
+                </ul>
+            </section>
+
+            <!-- User Acceptance Test Cases -->
+            <section>
+                <h2>User Acceptance Test Cases</h2>
+                <ul>
+                    <li class="fragment"><strong>TC-UAT-001: End-to-End User Workflow</strong> - Test complete user workflow</li>
+                    <li class="fragment"><strong>TC-UAT-002: Business Process Validation</strong> - Test business processes</li>
+                </ul>
+            </section>
+
+            <!-- UAT Plan -->
+            <section>
+                <h2>3. User Acceptance Testing</h2>
+                <h3>UAT Plan</h3>
+                <ul>
+                    <li class="fragment"><strong>UAT Objectives:</strong> Validate business requirements, test user workflows</li>
+                    <li class="fragment"><strong>UAT Participants:</strong> Librarians, Students, Library Manager, IT Support</li>
+                    <li class="fragment"><strong>UAT Schedule:</strong> Week 1: Preparation, Week 2: Execution, Week 3: Issue resolution, Week 4: Sign-off</li>
+                </ul>
+            </section>
+
+            <!-- UAT Test Scenarios -->
+            <section>
+                <h2>UAT Test Scenarios</h2>
+                <h3>Scenario 1: Librarian Daily Workflow</h3>
+                <ul>
+                    <li class="fragment">Login to system</li>
+                    <li class="fragment">Search for books</li>
+                    <li class="fragment">Process book borrowing</li>
+                    <li class="fragment">Process book return</li>
+                    <li class="fragment">Generate reports</li>
+                </ul>
+            </section>
+
+            <!-- More Scenarios -->
+            <section>
+                <h2>UAT Test Scenarios (Lanjutan)</h2>
+                <h3>Scenario 2: Student Book Borrowing</h3>
+                <ul>
+                    <li class="fragment">Login to system</li>
+                    <li class="fragment">Search for books</li>
+                    <li class="fragment">Borrow books</li>
+                    <li class="fragment">View borrowing history</li>
+                    <li class="fragment">Return books</li>
+                </ul>
+                
+                <h3>Scenario 3: Book Reservation</h3>
+                <ul>
+                    <li class="fragment">Login to system</li>
+                    <li class="fragment">Search for unavailable books</li>
+                    <li class="fragment">Reserve books</li>
+                    <li class="fragment">Receive notifications</li>
+                    <li class="fragment">Claim reserved books</li>
+                </ul>
+            </section>
+
+            <!-- UAT Results -->
+            <section>
+                <h2>UAT Results</h2>
+                <h3>Test Execution Summary</h3>
+                <ul>
+                    <li class="fragment">Total test cases: 50</li>
+                    <li class="fragment">Passed: 45</li>
+                    <li class="fragment">Failed: 3</li>
+                    <li class="fragment">Blocked: 2</li>
+                </ul>
+                
+                <h3>Issues Identified</h3>
+                <ul>
+                    <li class="fragment">High Priority: 2 issues</li>
+                    <li class="fragment">Medium Priority: 3 issues</li>
+                    <li class="fragment">Low Priority: 5 issues</li>
+                </ul>
+            </section>
+
+            <!-- User Feedback -->
+            <section>
+                <h2>User Feedback</h2>
+                <ul>
+                    <li class="fragment">Interface is intuitive</li>
+                    <li class="fragment">Navigation is clear</li>
+                    <li class="fragment">Performance is good</li>
+                    <li class="fragment">Some features need improvement</li>
+                </ul>
+            </section>
+
+            <!-- Gap Analysis -->
+            <section>
+                <h2>4. Gap Analysis</h2>
+                <h3>Requirements Gaps</h3>
+                <ul>
+                    <li class="fragment"><strong>Missing Requirements:</strong> Advanced search filters, Book recommendation system</li>
+                    <li class="fragment"><strong>Incomplete Requirements:</strong> Error handling specifications, Performance requirements</li>
+                    <li class="fragment"><strong>Unclear Requirements:</strong> Business rule definitions, User interface specifications</li>
+                </ul>
+            </section>
+
+            <!-- Implementation Gaps -->
+            <section>
+                <h2>Implementation Gaps</h2>
+                <ul>
+                    <li class="fragment"><strong>Missing Features:</strong> Advanced search functionality, Book recommendation system</li>
+                    <li class="fragment"><strong>Incomplete Functionality:</strong> Error handling, Performance optimization</li>
+                </ul>
+            </section>
+
+            <!-- User Experience Gaps -->
+            <section>
+                <h2>User Experience Gaps</h2>
+                <ul>
+                    <li class="fragment">Usability issues</li>
+                    <li class="fragment">Navigation problems</li>
+                    <li class="fragment">Accessibility issues</li>
+                    <li class="fragment">User satisfaction gaps</li>
+                </ul>
+            </section>
+
+            <!-- Gap Resolution -->
+            <section>
+                <h2>Gap Resolution</h2>
+                <h3>Immediate Actions</h3>
+                <ul>
+                    <li class="fragment">Add missing requirements</li>
+                    <li class="fragment">Clarify unclear requirements</li>
+                    <li class="fragment">Implement missing features</li>
+                    <li class="fragment">Fix incomplete functionality</li>
+                </ul>
+                
+                <h3>Short-term Actions</h3>
+                <ul>
+                    <li class="fragment">Develop advanced features</li>
+                    <li class="fragment">Improve performance</li>
+                    <li class="fragment">Enhance security</li>
+                    <li class="fragment">Optimize usability</li>
+                </ul>
+            </section>
+
+            <!-- Long-term Actions -->
+            <section>
+                <h2>Long-term Actions</h2>
+                <ul>
+                    <li class="fragment">Mobile app development</li>
+                    <li class="fragment">External system integration</li>
+                    <li class="fragment">Advanced analytics</li>
+                    <li class="fragment">AI-powered features</li>
+                </ul>
+            </section>
+
+            <!-- Validation Results -->
+            <section>
+                <h2>5. Validation Results</h2>
+                <h3>Requirements Validation</h3>
+                <ul>
+                    <li class="fragment">Completeness: 85% complete</li>
+                    <li class="fragment">Consistency: 90% consistent</li>
+                    <li class="fragment">Correctness: 95% correct</li>
+                    <li class="fragment">Feasibility: 100% feasible</li>
+                    <li class="fragment">Testability: 90% testable</li>
+                </ul>
+            </section>
+
+            <!-- Prototype Validation -->
+            <section>
+                <h2>Prototype Validation</h2>
+                <ul>
+                    <li class="fragment">UI Prototype: Validated with users</li>
+                    <li class="fragment">Functional Prototype: Validated with stakeholders</li>
+                    <li class="fragment">Technical Prototype: Validated with IT team</li>
+                </ul>
+            </section>
+
+            <!-- User Acceptance Testing -->
+            <section>
+                <h2>User Acceptance Testing</h2>
+                <ul>
+                    <li class="fragment">UAT Results: 90% pass rate</li>
+                    <li class="fragment">User Satisfaction: 85% satisfied</li>
+                    <li class="fragment">Business Requirements: 95% met</li>
+                    <li class="fragment">Acceptance Criteria: 90% met</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 10</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Validation Plan</strong> - Rencana validasi lengkap</li>
+                        <li><strong>Test Cases</strong> - Test cases komprehensif</li>
+                        <li><strong>UAT Plan</strong> - Rencana UAT detail</li>
+                        <li><strong>Gap Analysis Report</strong> - Laporan analisis gaps</li>
+                        <li><strong>Validation Report</strong> - Laporan validasi lengkap</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu melakukan validasi spesifikasi requirements</li>
+                        <li>Mampu membuat test cases yang komprehensif</li>
+                        <li>Mampu melakukan user acceptance testing</li>
+                        <li>Mampu mengidentifikasi gaps dalam requirements</li>
+                        <li>Mampu membuat validation report yang detail</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Validation Techniques</a></li>
+                    <li><a href="https://www.pmi.org/" target="_blank">User Acceptance Testing Best Practices</a></li>
+                    <li><a href="https://www.istqb.org/" target="_blank">Test Case Development</a></li>
+                    <li><a href="https://www.businessanalysis.com/" target="_blank">Gap Analysis Methods</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-09-review-kebutuhan.html">← Unit 9 - Review Kebutuhan</a></p>
+                <p><a href="unit-11-struktur-perangkat-lunak.html">Unit 11 - Struktur Perangkat Lunak →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

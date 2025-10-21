@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 11: Struktur Perangkat Lunak</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .architecture-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .architecture-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .architecture-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .layered, .reveal .microservices, .reveal .monolithic {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .layered {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .microservices {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .monolithic {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .diagram-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .diagram-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .database-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .database-item {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .database-item h5 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .integration-item {
+            background: #fff3cd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .integration-item h5 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .pattern-item {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .pattern-item h5 {
+            color: #495057;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 11</h1>
+                <h2>Menganalisis Struktur Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.011.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Menganalisis struktur perangkat lunak</li>
+                    <li class="fragment">Membuat diagram arsitektur</li>
+                    <li class="fragment">Mendesain database</li>
+                    <li class="fragment">Menganalisis integrasi sistem</li>
+                    <li class="fragment">Membuat dokumentasi arsitektur</li>
+                </ul>
+            </section>
+
+            <!-- System Architecture Overview -->
+            <section>
+                <h2>System Architecture Overview</h2>
+                <div class="architecture-card">
+                    <h4>Definisi Arsitektur Sistem</h4>
+                    <p>Arsitektur sistem adalah struktur fundamental dari komponen-komponen sistem, hubungan antar komponen, dan prinsip-prinsip yang mengatur desain dan evolusi sistem.</p>
+                </div>
+            </section>
+
+            <!-- Architecture Patterns -->
+            <section>
+                <h2>Architecture Patterns</h2>
+                <div class="architecture-types">
+                    <div class="layered">
+                        <h4>Layered Architecture</h4>
+                        <ul>
+                            <li>Presentation Layer</li>
+                            <li>Business Logic Layer</li>
+                            <li>Data Access Layer</li>
+                            <li>Database Layer</li>
+                        </ul>
+                    </div>
+                    <div class="microservices">
+                        <h4>Microservices Architecture</h4>
+                        <ul>
+                            <li>Service-oriented</li>
+                            <li>Loosely coupled</li>
+                            <li>Independently deployable</li>
+                            <li>Scalable</li>
+                        </ul>
+                    </div>
+                    <div class="monolithic">
+                        <h4>Monolithic Architecture</h4>
+                        <ul>
+                            <li>Single deployable unit</li>
+                            <li>Tightly coupled</li>
+                            <li>Shared database</li>
+                            <li>Simple deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architectural Diagrams -->
+            <section>
+                <h2>Architectural Diagrams</h2>
+                <div class="diagram-grid">
+                    <div class="diagram-item">
+                        <h5>System Context Diagram</h5>
+                        <ul>
+                            <li>External systems</li>
+                            <li>System boundaries</li>
+                            <li>Data flows</li>
+                            <li>Interfaces</li>
+                        </ul>
+                    </div>
+                    <div class="diagram-item">
+                        <h5>Component Diagram</h5>
+                        <ul>
+                            <li>System components</li>
+                            <li>Component relationships</li>
+                            <li>Dependencies</li>
+                            <li>Interfaces</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More Diagrams -->
+            <section>
+                <h2>Architectural Diagrams (Lanjutan)</h2>
+                <div class="diagram-grid">
+                    <div class="diagram-item">
+                        <h5>Deployment Diagram</h5>
+                        <ul>
+                            <li>Hardware nodes</li>
+                            <li>Software components</li>
+                            <li>Deployment relationships</li>
+                            <li>Network topology</li>
+                        </ul>
+                    </div>
+                    <div class="diagram-item">
+                        <h5>Sequence Diagram</h5>
+                        <ul>
+                            <li>Object interactions</li>
+                            <li>Message flows</li>
+                            <li>Timing constraints</li>
+                            <li>Lifelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database Design -->
+            <section>
+                <h2>Database Design</h2>
+                <div class="database-grid">
+                    <div class="database-item">
+                        <h5>Conceptual Design</h5>
+                        <ul>
+                            <li>Entity identification</li>
+                            <li>Relationship modeling</li>
+                            <li>Attribute definition</li>
+                            <li>Business rules</li>
+                        </ul>
+                    </div>
+                    <div class="database-item">
+                        <h5>Logical Design</h5>
+                        <ul>
+                            <li>Table structure</li>
+                            <li>Primary keys</li>
+                            <li>Foreign keys</li>
+                            <li>Normalization</li>
+                        </ul>
+                    </div>
+                    <div class="database-item">
+                        <h5>Physical Design</h5>
+                        <ul>
+                            <li>Indexing strategy</li>
+                            <li>Storage optimization</li>
+                            <li>Performance tuning</li>
+                            <li>Security implementation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database Optimization -->
+            <section>
+                <h2>Database Optimization</h2>
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li class="fragment">Index optimization</li>
+                    <li class="fragment">Query optimization</li>
+                    <li class="fragment">Connection pooling</li>
+                    <li class="fragment">Caching strategies</li>
+                </ul>
+                
+                <h3>Scalability</h3>
+                <ul>
+                    <li class="fragment">Horizontal scaling</li>
+                    <li class="fragment">Vertical scaling</li>
+                    <li class="fragment">Load balancing</li>
+                    <li class="fragment">Data partitioning</li>
+                </ul>
+            </section>
+
+            <!-- Integration Design -->
+            <section>
+                <h2>Integration Design</h2>
+                <div class="integration-grid">
+                    <div class="integration-item">
+                        <h5>API Integration</h5>
+                        <ul>
+                            <li>REST APIs</li>
+                            <li>SOAP services</li>
+                            <li>GraphQL</li>
+                            <li>Webhooks</li>
+                        </ul>
+                    </div>
+                    <div class="integration-item">
+                        <h5>Data Integration</h5>
+                        <ul>
+                            <li>ETL processes</li>
+                            <li>Data synchronization</li>
+                            <li>Real-time streaming</li>
+                            <li>Batch processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Integration Patterns -->
+            <section>
+                <h2>Integration Patterns</h2>
+                <div class="pattern-grid">
+                    <div class="pattern-item">
+                        <h5>Point-to-Point</h5>
+                        <ul>
+                            <li>Direct integration</li>
+                            <li>Simple implementation</li>
+                            <li>Limited scalability</li>
+                            <li>Maintenance challenges</li>
+                        </ul>
+                    </div>
+                    <div class="pattern-item">
+                        <h5>Hub and Spoke</h5>
+                        <ul>
+                            <li>Central hub</li>
+                            <li>Multiple spokes</li>
+                            <li>Centralized management</li>
+                            <li>Single point of failure</li>
+                        </ul>
+                    </div>
+                    <div class="pattern-item">
+                        <h5>Enterprise Service Bus</h5>
+                        <ul>
+                            <li>Message routing</li>
+                            <li>Service orchestration</li>
+                            <li>Loose coupling</li>
+                            <li>Scalable architecture</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Architecture -->
+            <section>
+                <h2>Security Architecture</h2>
+                <h3>Security Layers</h3>
+                <ul>
+                    <li class="fragment">Network security</li>
+                    <li class="fragment">Application security</li>
+                    <li class="fragment">Data security</li>
+                    <li class="fragment">Identity and access management</li>
+                </ul>
+                
+                <h3>Security Controls</h3>
+                <ul>
+                    <li class="fragment">Authentication</li>
+                    <li class="fragment">Authorization</li>
+                    <li class="fragment">Encryption</li>
+                    <li class="fragment">Audit logging</li>
+                </ul>
+            </section>
+
+            <!-- Performance Architecture -->
+            <section>
+                <h2>Performance Architecture</h2>
+                <h3>Performance Considerations</h3>
+                <ul>
+                    <li class="fragment">Response time optimization</li>
+                    <li class="fragment">Throughput maximization</li>
+                    <li class="fragment">Resource utilization</li>
+                    <li class="fragment">Scalability planning</li>
+                </ul>
+                
+                <h3>Performance Strategies</h3>
+                <ul>
+                    <li class="fragment">Caching</li>
+                    <li class="fragment">Load balancing</li>
+                    <li class="fragment">CDN implementation</li>
+                    <li class="fragment">Database optimization</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: Architecture Analysis</h4>
+                    <p><strong>Tugas:</strong> Analisis struktur perangkat lunak untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi komponen sistem</li>
+                        <li>Analisis hubungan antar komponen</li>
+                        <li>Pilih pattern arsitektur</li>
+                        <li>Buat diagram arsitektur</li>
+                        <li>Dokumentasikan struktur</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Database Design</h4>
+                    <p><strong>Tugas:</strong> Desain database untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi entitas</li>
+                        <li>Definisikan relasi</li>
+                        <li>Normalisasi database</li>
+                        <li>Optimasi performa</li>
+                        <li>Implementasi keamanan</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Integration Design</h4>
+                    <p><strong>Tugas:</strong> Desain integrasi sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi sistem eksternal</li>
+                        <li>Pilih pattern integrasi</li>
+                        <li>Desain API</li>
+                        <li>Implementasi keamanan</li>
+                        <li>Test integrasi</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Architecture Documentation</h4>
+                    <p><strong>Tugas:</strong> Buat dokumentasi arsitektur lengkap</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Buat diagram arsitektur</li>
+                        <li>Dokumentasikan komponen</li>
+                        <li>Deskripsikan integrasi</li>
+                        <li>Implementasi keamanan</li>
+                        <li>Validasi arsitektur</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Struktur Perangkat Lunak</h2>
+                <p>Analisis struktur untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- System Architecture -->
+            <section>
+                <h2>1. System Architecture</h2>
+                <h3>Architecture Pattern: Layered Architecture</h3>
+                <ul>
+                    <li class="fragment"><strong>Presentation Layer:</strong> Web interface, Mobile app</li>
+                    <li class="fragment"><strong>Business Logic Layer:</strong> Core business processes</li>
+                    <li class="fragment"><strong>Data Access Layer:</strong> Database operations</li>
+                    <li class="fragment"><strong>Database Layer:</strong> PostgreSQL database</li>
+                </ul>
+            </section>
+
+            <!-- System Components -->
+            <section>
+                <h2>System Components</h2>
+                <h3>Core Components</h3>
+                <ul>
+                    <li class="fragment"><strong>User Management:</strong> Authentication, Authorization, User profiles</li>
+                    <li class="fragment"><strong>Book Management:</strong> Catalog, Search, Inventory</li>
+                    <li class="fragment"><strong>Borrowing System:</strong> Check-out, Check-in, Renewal</li>
+                    <li class="fragment"><strong>Reservation System:</strong> Book reservation, Queue management</li>
+                    <li class="fragment"><strong>Fine Management:</strong> Fine calculation, Payment processing</li>
+                </ul>
+            </section>
+
+            <!-- Supporting Components -->
+            <section>
+                <h2>Supporting Components</h2>
+                <ul>
+                    <li class="fragment"><strong>Notification Service:</strong> Email, SMS notifications</li>
+                    <li class="fragment"><strong>Reporting System:</strong> Analytics, Reports generation</li>
+                    <li class="fragment"><strong>Audit System:</strong> Activity logging, Audit trails</li>
+                    <li class="fragment"><strong>Backup System:</strong> Data backup, Recovery</li>
+                </ul>
+            </section>
+
+            <!-- Database Design -->
+            <section>
+                <h2>2. Database Design</h2>
+                <h3>Core Tables</h3>
+                <ul>
+                    <li class="fragment"><strong>Users:</strong> User information, roles, status</li>
+                    <li class="fragment"><strong>Books:</strong> Book details, ISBN, availability</li>
+                    <li class="fragment"><strong>Borrowings:</strong> Borrowing records, due dates</li>
+                    <li class="fragment"><strong>Reservations:</strong> Reservation records, queue</li>
+                    <li class="fragment"><strong>Fines:</strong> Fine records, payment status</li>
+                </ul>
+            </section>
+
+            <!-- Database Relationships -->
+            <section>
+                <h2>Database Relationships</h2>
+                <ul>
+                    <li class="fragment"><strong>Users → Borrowings:</strong> One-to-many relationship</li>
+                    <li class="fragment"><strong>Books → Borrowings:</strong> One-to-many relationship</li>
+                    <li class="fragment"><strong>Users → Reservations:</strong> One-to-many relationship</li>
+                    <li class="fragment"><strong>Books → Reservations:</strong> One-to-many relationship</li>
+                    <li class="fragment"><strong>Users → Fines:</strong> One-to-many relationship</li>
+                </ul>
+            </section>
+
+            <!-- Database Optimization -->
+            <section>
+                <h2>Database Optimization</h2>
+                <h3>Indexing Strategy</h3>
+                <ul>
+                    <li class="fragment">Primary key indexes</li>
+                    <li class="fragment">Foreign key indexes</li>
+                    <li class="fragment">Search field indexes</li>
+                    <li class="fragment">Composite indexes</li>
+                </ul>
+                
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li class="fragment">Query optimization</li>
+                    <li class="fragment">Connection pooling</li>
+                    <li class="fragment">Caching strategy</li>
+                    <li class="fragment">Data partitioning</li>
+                </ul>
+            </section>
+
+            <!-- Integration Design -->
+            <section>
+                <h2>3. Integration Design</h2>
+                <h3>External Systems</h3>
+                <ul>
+                    <li class="fragment"><strong>University Student System:</strong> Student data synchronization</li>
+                    <li class="fragment"><strong>Payment Gateway:</strong> Fine payment processing</li>
+                    <li class="fragment"><strong>Email Service:</strong> Notification delivery</li>
+                    <li class="fragment"><strong>Library Management System:</strong> Book catalog integration</li>
+                </ul>
+            </section>
+
+            <!-- Integration Patterns -->
+            <section>
+                <h2>Integration Patterns</h2>
+                <h3>API Integration</h3>
+                <ul>
+                    <li class="fragment"><strong>REST APIs:</strong> Standard HTTP-based integration</li>
+                    <li class="fragment"><strong>Webhooks:</strong> Real-time event notifications</li>
+                    <li class="fragment"><strong>Batch Processing:</strong> Scheduled data synchronization</li>
+                    <li class="fragment"><strong>Message Queues:</strong> Asynchronous processing</li>
+                </ul>
+            </section>
+
+            <!-- Security Architecture -->
+            <section>
+                <h2>4. Security Architecture</h2>
+                <h3>Security Layers</h3>
+                <ul>
+                    <li class="fragment"><strong>Network Security:</strong> Firewall, VPN, SSL/TLS</li>
+                    <li class="fragment"><strong>Application Security:</strong> Authentication, Authorization</li>
+                    <li class="fragment"><strong>Data Security:</strong> Encryption, Access control</li>
+                    <li class="fragment"><strong>Audit Security:</strong> Logging, Monitoring</li>
+                </ul>
+            </section>
+
+            <!-- Security Controls -->
+            <section>
+                <h2>Security Controls</h2>
+                <ul>
+                    <li class="fragment"><strong>Authentication:</strong> Multi-factor authentication</li>
+                    <li class="fragment"><strong>Authorization:</strong> Role-based access control</li>
+                    <li class="fragment"><strong>Encryption:</strong> Data encryption at rest and in transit</li>
+                    <li class="fragment"><strong>Audit Logging:</strong> Comprehensive activity logging</li>
+                </ul>
+            </section>
+
+            <!-- Performance Architecture -->
+            <section>
+                <h2>5. Performance Architecture</h2>
+                <h3>Performance Strategies</h3>
+                <ul>
+                    <li class="fragment"><strong>Caching:</strong> Redis cache for frequently accessed data</li>
+                    <li class="fragment"><strong>Load Balancing:</strong> Multiple server instances</li>
+                    <li class="fragment"><strong>CDN:</strong> Content delivery network for static assets</li>
+                    <li class="fragment"><strong>Database Optimization:</strong> Query optimization, indexing</li>
+                </ul>
+            </section>
+
+            <!-- Scalability -->
+            <section>
+                <h2>Scalability</h2>
+                <ul>
+                    <li class="fragment"><strong>Horizontal Scaling:</strong> Add more servers</li>
+                    <li class="fragment"><strong>Vertical Scaling:</strong> Upgrade server resources</li>
+                    <li class="fragment"><strong>Database Scaling:</strong> Read replicas, Sharding</li>
+                    <li class="fragment"><strong>Microservices:</strong> Service decomposition</li>
+                </ul>
+            </section>
+
+            <!-- Architecture Diagrams -->
+            <section>
+                <h2>6. Architecture Diagrams</h2>
+                <h3>System Context Diagram</h3>
+                <ul>
+                    <li class="fragment">External systems: Student system, Payment gateway</li>
+                    <li class="fragment">System boundaries: Library management system</li>
+                    <li class="fragment">Data flows: Student data, Payment data</li>
+                    <li class="fragment">Interfaces: REST APIs, Webhooks</li>
+                </ul>
+            </section>
+
+            <!-- Component Diagram -->
+            <section>
+                <h2>Component Diagram</h2>
+                <ul>
+                    <li class="fragment"><strong>User Management Component:</strong> Authentication, Authorization</li>
+                    <li class="fragment"><strong>Book Management Component:</strong> Catalog, Search</li>
+                    <li class="fragment"><strong>Borrowing Component:</strong> Check-out, Check-in</li>
+                    <li class="fragment"><strong>Reservation Component:</strong> Reservation, Queue</li>
+                    <li class="fragment"><strong>Fine Component:</strong> Calculation, Payment</li>
+                </ul>
+            </section>
+
+            <!-- Deployment Diagram -->
+            <section>
+                <h2>Deployment Diagram</h2>
+                <ul>
+                    <li class="fragment"><strong>Web Server:</strong> Apache/Nginx, PHP application</li>
+                    <li class="fragment"><strong>Database Server:</strong> PostgreSQL database</li>
+                    <li class="fragment"><strong>Cache Server:</strong> Redis cache</li>
+                    <li class="fragment"><strong>Load Balancer:</strong> Traffic distribution</li>
+                </ul>
+            </section>
+
+            <!-- Sequence Diagram -->
+            <section>
+                <h2>Sequence Diagram</h2>
+                <h3>Book Borrowing Process</h3>
+                <ul>
+                    <li class="fragment">User login</li>
+                    <li class="fragment">Search book</li>
+                    <li class="fragment">Check availability</li>
+                    <li class="fragment">Process borrowing</li>
+                    <li class="fragment">Update database</li>
+                    <li class="fragment">Send confirmation</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 11</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Architecture Analysis</strong> - Analisis struktur perangkat lunak</li>
+                        <li><strong>Architecture Diagrams</strong> - Diagram arsitektur lengkap</li>
+                        <li><strong>Database Design</strong> - Desain database dan optimasi</li>
+                        <li><strong>Integration Design</strong> - Desain integrasi sistem</li>
+                        <li><strong>Architecture Documentation</strong> - Dokumentasi arsitektur lengkap</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu menganalisis struktur perangkat lunak</li>
+                        <li>Mampu membuat diagram arsitektur</li>
+                        <li>Mampu mendesain database</li>
+                        <li>Mampu menganalisis integrasi sistem</li>
+                        <li>Mampu membuat dokumentasi arsitektur</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.omg.org/" target="_blank">Software Architecture Patterns</a></li>
+                    <li><a href="https://www.ieee.org/" target="_blank">Database Design Principles</a></li>
+                    <li><a href="https://www.ibm.com/" target="_blank">Integration Architecture</a></li>
+                    <li><a href="https://www.microsoft.com/" target="_blank">Security Architecture</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-10-validasi-spesifikasi.html">← Unit 10 - Validasi Spesifikasi</a></p>
+                <p><a href="unit-12-komponen-perangkat-lunak.html">Unit 12 - Komponen Perangkat Lunak →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 12: Komponen Perangkat Lunak</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .component-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .component-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .component-types {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .ui-component, .reveal .business-component, .reveal .data-component {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .ui-component {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .business-component {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .data-component {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .design-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .design-item {
+            background: #e3f2fd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .design-item h5 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+        .reveal .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .integration-item {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .integration-item h5 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .component-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .component-item {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .component-item h5 {
+            color: #495057;
+            margin-top: 0;
+        }
+        .reveal .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reveal .principles-item {
+            background: #fff3cd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .reveal .principles-item h5 {
+            color: #856404;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 12</h1>
+                <h2>Menganalisis Komponen Perangkat Lunak</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.012.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Menganalisis komponen perangkat lunak</li>
+                    <li class="fragment">Mendesain komponen UI</li>
+                    <li class="fragment">Mendesain komponen business logic</li>
+                    <li class="fragment">Mendesain komponen data access</li>
+                    <li class="fragment">Mendesain komponen integrasi</li>
+                </ul>
+            </section>
+
+            <!-- Component Design Overview -->
+            <section>
+                <h2>Component Design Overview</h2>
+                <div class="component-card">
+                    <h4>Definisi Komponen</h4>
+                    <p>Komponen adalah unit modular yang dapat digunakan kembali, memiliki interface yang jelas, dan dapat diintegrasikan dengan komponen lain untuk membentuk sistem yang lebih besar.</p>
+                </div>
+            </section>
+
+            <!-- Component Types -->
+            <section>
+                <h2>Component Types</h2>
+                <div class="component-types">
+                    <div class="ui-component">
+                        <h4>UI Components</h4>
+                        <ul>
+                            <li>User interface elements</li>
+                            <li>Form components</li>
+                            <li>Navigation components</li>
+                            <li>Display components</li>
+                        </ul>
+                    </div>
+                    <div class="business-component">
+                        <h4>Business Logic Components</h4>
+                        <ul>
+                            <li>Business rules</li>
+                            <li>Workflow engines</li>
+                            <li>Calculation engines</li>
+                            <li>Validation components</li>
+                        </ul>
+                    </div>
+                    <div class="data-component">
+                        <h4>Data Access Components</h4>
+                        <ul>
+                            <li>Database access</li>
+                            <li>Data transformation</li>
+                            <li>Data validation</li>
+                            <li>Data caching</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Component Design Principles -->
+            <section>
+                <h2>Component Design Principles</h2>
+                <div class="principles-grid">
+                    <div class="principles-item">
+                        <h5>Single Responsibility</h5>
+                        <ul>
+                            <li>One responsibility per component</li>
+                            <li>Clear purpose</li>
+                            <li>Focused functionality</li>
+                            <li>Easy to understand</li>
+                        </ul>
+                    </div>
+                    <div class="principles-item">
+                        <h5>Loose Coupling</h5>
+                        <ul>
+                            <li>Minimal dependencies</li>
+                            <li>Interface-based design</li>
+                            <li>Independent components</li>
+                            <li>Easy to modify</li>
+                        </ul>
+                    </div>
+                    <div class="principles-item">
+                        <h5>High Cohesion</h5>
+                        <ul>
+                            <li>Related functionality</li>
+                            <li>Strong internal relationships</li>
+                            <li>Consistent behavior</li>
+                            <li>Logical grouping</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UI Component Design -->
+            <section>
+                <h2>UI Component Design</h2>
+                <div class="design-grid">
+                    <div class="design-item">
+                        <h5>Form Components</h5>
+                        <ul>
+                            <li>Input fields</li>
+                            <li>Validation components</li>
+                            <li>Submit buttons</li>
+                            <li>Error displays</li>
+                        </ul>
+                    </div>
+                    <div class="design-item">
+                        <h5>Navigation Components</h5>
+                        <ul>
+                            <li>Menu systems</li>
+                            <li>Breadcrumbs</li>
+                            <li>Pagination</li>
+                            <li>Search components</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Display Components -->
+            <section>
+                <h2>Display Components</h2>
+                <ul>
+                    <li class="fragment"><strong>Data Tables:</strong> Sortable, filterable data display</li>
+                    <li class="fragment"><strong>Charts and Graphs:</strong> Data visualization components</li>
+                    <li class="fragment"><strong>Cards and Panels:</strong> Content organization</li>
+                    <li class="fragment"><strong>Modals and Dialogs:</strong> Overlay components</li>
+                </ul>
+            </section>
+
+            <!-- Business Logic Component Design -->
+            <section>
+                <h2>Business Logic Component Design</h2>
+                <div class="component-grid">
+                    <div class="component-item">
+                        <h5>Business Rules Engine</h5>
+                        <ul>
+                            <li>Rule definition</li>
+                            <li>Rule execution</li>
+                            <li>Rule validation</li>
+                            <li>Rule management</li>
+                        </ul>
+                    </div>
+                    <div class="component-item">
+                        <h5>Workflow Engine</h5>
+                        <ul>
+                            <li>Process definition</li>
+                            <li>Process execution</li>
+                            <li>State management</li>
+                            <li>Event handling</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculation Engine -->
+            <section>
+                <h2>Calculation Engine</h2>
+                <ul>
+                    <li class="fragment"><strong>Mathematical Operations:</strong> Complex calculations</li>
+                    <li class="fragment"><strong>Business Calculations:</strong> Business-specific formulas</li>
+                    <li class="fragment"><strong>Statistical Analysis:</strong> Data analysis functions</li>
+                    <li class="fragment"><strong>Financial Calculations:</strong> Financial formulas</li>
+                </ul>
+            </section>
+
+            <!-- Validation Components -->
+            <section>
+                <h2>Validation Components</h2>
+                <ul>
+                    <li class="fragment"><strong>Data Validation:</strong> Input data validation</li>
+                    <li class="fragment"><strong>Business Validation:</strong> Business rule validation</li>
+                    <li class="fragment"><strong>Format Validation:</strong> Data format checking</li>
+                    <li class="fragment"><strong>Range Validation:</strong> Value range checking</li>
+                </ul>
+            </section>
+
+            <!-- Data Access Component Design -->
+            <section>
+                <h2>Data Access Component Design</h2>
+                <div class="design-grid">
+                    <div class="design-item">
+                        <h5>Database Access</h5>
+                        <ul>
+                            <li>CRUD operations</li>
+                            <li>Query execution</li>
+                            <li>Transaction management</li>
+                            <li>Connection pooling</li>
+                        </ul>
+                    </div>
+                    <div class="design-item">
+                        <h5>Data Transformation</h5>
+                        <ul>
+                            <li>Data mapping</li>
+                            <li>Data conversion</li>
+                            <li>Data formatting</li>
+                            <li>Data aggregation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Validation -->
+            <section>
+                <h2>Data Validation</h2>
+                <ul>
+                    <li class="fragment"><strong>Data Integrity:</strong> Referential integrity checks</li>
+                    <li class="fragment"><strong>Data Quality:</strong> Data quality validation</li>
+                    <li class="fragment"><strong>Data Consistency:</strong> Cross-system consistency</li>
+                    <li class="fragment"><strong>Data Security:</strong> Data access validation</li>
+                </ul>
+            </section>
+
+            <!-- Data Caching -->
+            <section>
+                <h2>Data Caching</h2>
+                <ul>
+                    <li class="fragment"><strong>Memory Caching:</strong> In-memory data storage</li>
+                    <li class="fragment"><strong>Distributed Caching:</strong> Multi-server caching</li>
+                    <li class="fragment"><strong>Cache Invalidation:</strong> Cache update strategies</li>
+                    <li class="fragment"><strong>Cache Performance:</strong> Cache optimization</li>
+                </ul>
+            </section>
+
+            <!-- Integration Component Design -->
+            <section>
+                <h2>Integration Component Design</h2>
+                <div class="integration-grid">
+                    <div class="integration-item">
+                        <h5>API Integration</h5>
+                        <ul>
+                            <li>REST API clients</li>
+                            <li>SOAP service clients</li>
+                            <li>GraphQL clients</li>
+                            <li>Webhook handlers</li>
+                        </ul>
+                    </div>
+                    <div class="integration-item">
+                        <h5>Message Integration</h5>
+                        <ul>
+                            <li>Message queues</li>
+                            <li>Event streaming</li>
+                            <li>Message routing</li>
+                            <li>Message transformation</li>
+                        </ul>
+                    </div>
+                    <div class="integration-item">
+                        <h5>Data Integration</h5>
+                        <ul>
+                            <li>ETL processes</li>
+                            <li>Data synchronization</li>
+                            <li>Real-time streaming</li>
+                            <li>Batch processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Component Interface Design -->
+            <section>
+                <h2>Component Interface Design</h2>
+                <h3>Interface Principles</h3>
+                <ul>
+                    <li class="fragment"><strong>Clear Contracts:</strong> Well-defined interfaces</li>
+                    <li class="fragment"><strong>Minimal Dependencies:</strong> Few external dependencies</li>
+                    <li class="fragment"><strong>Stable Interfaces:</strong> Backward compatibility</li>
+                    <li class="fragment"><strong>Documentation:</strong> Clear interface documentation</li>
+                </ul>
+            </section>
+
+            <!-- Interface Types -->
+            <section>
+                <h2>Interface Types</h2>
+                <ul>
+                    <li class="fragment"><strong>Public Interfaces:</strong> External component access</li>
+                    <li class="fragment"><strong>Private Interfaces:</strong> Internal component access</li>
+                    <li class="fragment"><strong>Protected Interfaces:</strong> Subclass access</li>
+                    <li class="fragment"><strong>Event Interfaces:</strong> Event-based communication</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Exercise 1: UI Component Design</h4>
+                    <p><strong>Tugas:</strong> Desain komponen UI untuk sistem perpustakaan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi komponen UI yang dibutuhkan</li>
+                        <li>Desain interface komponen</li>
+                        <li>Definisikan properties dan methods</li>
+                        <li>Buat mockup komponen</li>
+                        <li>Dokumentasikan komponen</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 2: Business Logic Component Design</h4>
+                    <p><strong>Tugas:</strong> Desain komponen business logic</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi business rules</li>
+                        <li>Desain business logic components</li>
+                        <li>Definisikan workflow components</li>
+                        <li>Implementasi validation components</li>
+                        <li>Test business logic</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 3: Data Access Component Design</h4>
+                    <p><strong>Tugas:</strong> Desain komponen data access</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi data access needs</li>
+                        <li>Desain database access components</li>
+                        <li>Implementasi data transformation</li>
+                        <li>Setup data caching</li>
+                        <li>Test data access</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Exercise 4: Integration Component Design</h4>
+                    <p><strong>Tugas:</strong> Desain komponen integrasi</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi sistem eksternal</li>
+                        <li>Desain API integration components</li>
+                        <li>Implementasi message integration</li>
+                        <li>Setup data integration</li>
+                        <li>Test integration components</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Komponen Perangkat Lunak</h2>
+                <p>Analisis komponen untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- UI Components -->
+            <section>
+                <h2>1. UI Components</h2>
+                <h3>Form Components</h3>
+                <ul>
+                    <li class="fragment"><strong>Login Form:</strong> User authentication form</li>
+                    <li class="fragment"><strong>Book Search Form:</strong> Book search interface</li>
+                    <li class="fragment"><strong>Borrowing Form:</strong> Book borrowing interface</li>
+                    <li class="fragment"><strong>Return Form:</strong> Book return interface</li>
+                </ul>
+            </section>
+
+            <!-- Navigation Components -->
+            <section>
+                <h2>Navigation Components</h2>
+                <ul>
+                    <li class="fragment"><strong>Main Menu:</strong> Primary navigation</li>
+                    <li class="fragment"><strong>Breadcrumbs:</strong> Navigation trail</li>
+                    <li class="fragment"><strong>Pagination:</strong> Page navigation</li>
+                    <li class="fragment"><strong>Search Bar:</strong> Global search</li>
+                </ul>
+            </section>
+
+            <!-- Display Components -->
+            <section>
+                <h2>Display Components</h2>
+                <ul>
+                    <li class="fragment"><strong>Book Grid:</strong> Book listing display</li>
+                    <li class="fragment"><strong>Book Details:</strong> Book information display</li>
+                    <li class="fragment"><strong>User Dashboard:</strong> User information display</li>
+                    <li class="fragment"><strong>Borrowing History:</strong> User borrowing history</li>
+                </ul>
+            </section>
+
+            <!-- Business Logic Components -->
+            <section>
+                <h2>2. Business Logic Components</h2>
+                <h3>Business Rules Engine</h3>
+                <ul>
+                    <li class="fragment"><strong>Borrowing Rules:</strong> Book borrowing validation</li>
+                    <li class="fragment"><strong>Fine Rules:</strong> Fine calculation logic</li>
+                    <li class="fragment"><strong>Reservation Rules:</strong> Book reservation logic</li>
+                    <li class="fragment"><strong>User Rules:</strong> User access control</li>
+                </ul>
+            </section>
+
+            <!-- Workflow Engine -->
+            <section>
+                <h2>Workflow Engine</h2>
+                <ul>
+                    <li class="fragment"><strong>Borrowing Workflow:</strong> Book borrowing process</li>
+                    <li class="fragment"><strong>Return Workflow:</strong> Book return process</li>
+                    <li class="fragment"><strong>Reservation Workflow:</strong> Book reservation process</li>
+                    <li class="fragment"><strong>Fine Workflow:</strong> Fine processing workflow</li>
+                </ul>
+            </section>
+
+            <!-- Calculation Engine -->
+            <section>
+                <h2>Calculation Engine</h2>
+                <ul>
+                    <li class="fragment"><strong>Fine Calculator:</strong> Fine amount calculation</li>
+                    <li class="fragment"><strong>Due Date Calculator:</strong> Due date calculation</li>
+                    <li class="fragment"><strong>Renewal Calculator:</strong> Renewal period calculation</li>
+                    <li class="fragment"><strong>Statistics Calculator:</strong> Library statistics</li>
+                </ul>
+            </section>
+
+            <!-- Validation Components -->
+            <section>
+                <h2>Validation Components</h2>
+                <ul>
+                    <li class="fragment"><strong>User Validation:</strong> User data validation</li>
+                    <li class="fragment"><strong>Book Validation:</strong> Book data validation</li>
+                    <li class="fragment"><strong>Borrowing Validation:</strong> Borrowing eligibility</li>
+                    <li class="fragment"><strong>Payment Validation:</strong> Payment processing validation</li>
+                </ul>
+            </section>
+
+            <!-- Data Access Components -->
+            <section>
+                <h2>3. Data Access Components</h2>
+                <h3>Database Access</h3>
+                <ul>
+                    <li class="fragment"><strong>User DAO:</strong> User data access</li>
+                    <li class="fragment"><strong>Book DAO:</strong> Book data access</li>
+                    <li class="fragment"><strong>Borrowing DAO:</strong> Borrowing data access</li>
+                    <li class="fragment"><strong>Fine DAO:</strong> Fine data access</li>
+                </ul>
+            </section>
+
+            <!-- Data Transformation -->
+            <section>
+                <h2>Data Transformation</h2>
+                <ul>
+                    <li class="fragment"><strong>User Mapper:</strong> User data mapping</li>
+                    <li class="fragment"><strong>Book Mapper:</strong> Book data mapping</li>
+                    <li class="fragment"><strong>Borrowing Mapper:</strong> Borrowing data mapping</li>
+                    <li class="fragment"><strong>Report Mapper:</strong> Report data mapping</li>
+                </ul>
+            </section>
+
+            <!-- Data Caching -->
+            <section>
+                <h2>Data Caching</h2>
+                <ul>
+                    <li class="fragment"><strong>Book Cache:</strong> Book information caching</li>
+                    <li class="fragment"><strong>User Cache:</strong> User information caching</li>
+                    <li class="fragment"><strong>Search Cache:</strong> Search results caching</li>
+                    <li class="fragment"><strong>Session Cache:</strong> User session caching</li>
+                </ul>
+            </section>
+
+            <!-- Integration Components -->
+            <section>
+                <h2>4. Integration Components</h2>
+                <h3>API Integration</h3>
+                <ul>
+                    <li class="fragment"><strong>Student System API:</strong> Student data integration</li>
+                    <li class="fragment"><strong>Payment Gateway API:</strong> Payment processing</li>
+                    <li class="fragment"><strong>Email Service API:</strong> Notification delivery</li>
+                    <li class="fragment"><strong>Library System API:</strong> External library integration</li>
+                </ul>
+            </section>
+
+            <!-- Message Integration -->
+            <section>
+                <h2>Message Integration</h2>
+                <ul>
+                    <li class="fragment"><strong>Notification Queue:</strong> Notification processing</li>
+                    <li class="fragment"><strong>Event Stream:</strong> Real-time event processing</li>
+                    <li class="fragment"><strong>Message Router:</strong> Message routing</li>
+                    <li class="fragment"><strong>Message Transformer:</strong> Message format conversion</li>
+                </ul>
+            </section>
+
+            <!-- Data Integration -->
+            <section>
+                <h2>Data Integration</h2>
+                <ul>
+                    <li class="fragment"><strong>Student Data Sync:</strong> Student information synchronization</li>
+                    <li class="fragment"><strong>Book Data Sync:</strong> Book catalog synchronization</li>
+                    <li class="fragment"><strong>Borrowing Data Sync:</strong> Borrowing record synchronization</li>
+                    <li class="fragment"><strong>Report Data Sync:</strong> Report data synchronization</li>
+                </ul>
+            </section>
+
+            <!-- Component Interface Design -->
+            <section>
+                <h2>5. Component Interface Design</h2>
+                <h3>Public Interfaces</h3>
+                <ul>
+                    <li class="fragment"><strong>User Interface:</strong> User management interface</li>
+                    <li class="fragment"><strong>Book Interface:</strong> Book management interface</li>
+                    <li class="fragment"><strong>Borrowing Interface:</strong> Borrowing management interface</li>
+                    <li class="fragment"><strong>Report Interface:</strong> Report generation interface</li>
+                </ul>
+            </section>
+
+            <!-- Private Interfaces -->
+            <section>
+                <h2>Private Interfaces</h2>
+                <ul>
+                    <li class="fragment"><strong>Database Interface:</strong> Database access interface</li>
+                    <li class="fragment"><strong>Cache Interface:</strong> Cache management interface</li>
+                    <li class="fragment"><strong>Logging Interface:</strong> Logging management interface</li>
+                    <li class="fragment"><strong>Configuration Interface:</strong> Configuration management interface</li>
+                </ul>
+            </section>
+
+            <!-- Event Interfaces -->
+            <section>
+                <h2>Event Interfaces</h2>
+                <ul>
+                    <li class="fragment"><strong>User Events:</strong> User-related events</li>
+                    <li class="fragment"><strong>Book Events:</strong> Book-related events</li>
+                    <li class="fragment"><strong>Borrowing Events:</strong> Borrowing-related events</li>
+                    <li class="fragment"><strong>System Events:</strong> System-related events</li>
+                </ul>
+            </section>
+
+            <!-- Component Documentation -->
+            <section>
+                <h2>6. Component Documentation</h2>
+                <h3>Component Specifications</h3>
+                <ul>
+                    <li class="fragment">Component purpose and functionality</li>
+                    <li class="fragment">Interface specifications</li>
+                    <li class="fragment">Dependencies and requirements</li>
+                    <li class="fragment">Usage examples</li>
+                </ul>
+            </section>
+
+            <!-- API Documentation -->
+            <section>
+                <h2>API Documentation</h2>
+                <ul>
+                    <li class="fragment">Method signatures</li>
+                    <li class="fragment">Parameter descriptions</li>
+                    <li class="fragment">Return value specifications</li>
+                    <li class="fragment">Error handling</li>
+                </ul>
+            </section>
+
+            <!-- Integration Documentation -->
+            <section>
+                <h2>Integration Documentation</h2>
+                <ul>
+                    <li class="fragment">Integration patterns</li>
+                    <li class="fragment">Configuration requirements</li>
+                    <li class="fragment">Testing procedures</li>
+                    <li class="fragment">Troubleshooting guides</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 12</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Component Analysis</strong> - Analisis komponen perangkat lunak</li>
+                        <li><strong>UI Component Design</strong> - Desain komponen UI</li>
+                        <li><strong>Business Logic Component Design</strong> - Desain komponen business logic</li>
+                        <li><strong>Data Access Component Design</strong> - Desain komponen data access</li>
+                        <li><strong>Integration Component Design</strong> - Desain komponen integrasi</li>
+                        <li><strong>Component Documentation</strong> - Dokumentasi komponen lengkap</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu menganalisis komponen perangkat lunak</li>
+                        <li>Mampu mendesain komponen UI</li>
+                        <li>Mampu mendesain komponen business logic</li>
+                        <li>Mampu mendesain komponen data access</li>
+                        <li>Mampu mendesain komponen integrasi</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.omg.org/" target="_blank">Component Design Patterns</a></li>
+                    <li><a href="https://www.ieee.org/" target="_blank">Software Component Architecture</a></li>
+                    <li><a href="https://www.ibm.com/" target="_blank">Integration Component Design</a></li>
+                    <li><a href="https://www.microsoft.com/" target="_blank">UI Component Design</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-11-struktur-perangkat-lunak.html">← Unit 11 - Struktur Perangkat Lunak</a></p>
+                <p><a href="unit-13-user-interface.html">Unit 13 - User Interface →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

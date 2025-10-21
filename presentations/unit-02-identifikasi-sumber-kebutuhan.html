@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 2: Identifikasi Sumber Kebutuhan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2c3e50;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .reveal .title-slide h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .title-slide h2 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        .reveal .code-unit {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #2c3e50;
+        }
+        .reveal .stakeholder-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reveal .stakeholder-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .reveal .internal-external {
+            display: flex;
+            gap: 20px;
+        }
+        .reveal .internal, .reveal .external {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .reveal .internal {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+        }
+        .reveal .external {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+        }
+        .reveal .exercise-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .reveal .exercise-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .reveal .deliverables {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .deliverables h4 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+        .reveal .assessment {
+            background: #f0f8ff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .reveal .assessment h4 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        .reveal .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reveal .checklist li {
+            padding: 5px 0;
+        }
+        .reveal .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        .reveal .power-interest-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .reveal .grid-cell {
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .reveal .high-power-high-interest {
+            background: #ffebee;
+            border: 2px solid #f44336;
+        }
+        .reveal .high-power-low-interest {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+        .reveal .low-power-high-interest {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+        }
+        .reveal .low-power-low-interest {
+            background: #f5f5f5;
+            border: 2px solid #9e9e9e;
+        }
+        .reveal .stakeholder-matrix {
+            overflow-x: auto;
+        }
+        .reveal .stakeholder-matrix table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .stakeholder-matrix th,
+        .reveal .stakeholder-matrix td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .reveal .stakeholder-matrix th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Unit 2</h1>
+                <h2>Melakukan Identifikasi Sumber Kebutuhan</h2>
+                <div class="code-unit">Kode Unit: J.62SAD00.002.1</div>
+            </section>
+
+            <!-- Learning Objectives -->
+            <section>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah menyelesaikan unit ini, peserta mampu:</p>
+                <ul>
+                    <li class="fragment">Mengidentifikasi berbagai sumber kebutuhan dalam proyek perangkat lunak</li>
+                    <li class="fragment">Menganalisis stakeholder dan peran mereka</li>
+                    <li class="fragment">Membuat stakeholder map dan communication plan</li>
+                    <li class="fragment">Mengidentifikasi sumber kebutuhan internal dan eksternal</li>
+                </ul>
+            </section>
+
+            <!-- Pengertian Sumber Kebutuhan -->
+            <section>
+                <h2>Pengertian Sumber Kebutuhan</h2>
+                <div class="stakeholder-card">
+                    <p><strong>Sumber kebutuhan</strong> adalah pihak-pihak yang memiliki kepentingan (stakeholder) dalam pengembangan sistem dan dapat memberikan informasi tentang kebutuhan sistem.</p>
+                </div>
+            </section>
+
+            <!-- Kategori Sumber Kebutuhan -->
+            <section>
+                <h2>Kategori Sumber Kebutuhan</h2>
+                <div class="internal-external">
+                    <div class="internal">
+                        <h4>🏢 Stakeholder Internal</h4>
+                        <ul>
+                            <li>Pengguna Akhir</li>
+                            <li>Pemilik Bisnis</li>
+                            <li>Departemen TI</li>
+                            <li>Manajemen</li>
+                            <li>Ahli Materi Subjek (SME)</li>
+                        </ul>
+                    </div>
+                    <div class="external">
+                        <h4>🌐 Stakeholder Eksternal</h4>
+                        <ul>
+                            <li>Pelanggan</li>
+                            <li>Vendor/Pemasok</li>
+                            <li>Badan Regulasi</li>
+                            <li>Mitra</li>
+                            <li>Pemerintah</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stakeholder Internal Detail -->
+            <section>
+                <h2>Stakeholder Internal</h2>
+                <ul>
+                    <li class="fragment"><strong>Pengguna Akhir</strong> - Pengguna akhir sistem</li>
+                    <li class="fragment"><strong>Pemilik Bisnis</strong> - Pemilik bisnis/proses</li>
+                    <li class="fragment"><strong>Departemen TI</strong> - Tim teknologi informasi</li>
+                    <li class="fragment"><strong>Manajemen</strong> - Manajemen organisasi</li>
+                    <li class="fragment"><strong>Ahli Materi Subjek (SME)</strong> - Ahli dalam domain bisnis</li>
+                </ul>
+            </section>
+
+            <!-- Stakeholder Eksternal Detail -->
+            <section>
+                <h2>Stakeholder Eksternal</h2>
+                <ul>
+                    <li class="fragment"><strong>Pelanggan</strong> - Pelanggan organisasi</li>
+                    <li class="fragment"><strong>Vendor/Pemasok</strong> - Pemasok</li>
+                    <li class="fragment"><strong>Badan Regulasi</strong> - Badan regulasi</li>
+                    <li class="fragment"><strong>Mitra</strong> - Mitra bisnis</li>
+                    <li class="fragment"><strong>Pemerintah</strong> - Pemerintah</li>
+                </ul>
+            </section>
+
+            <!-- Teknik Identifikasi Stakeholder -->
+            <section>
+                <h2>Teknik Identifikasi Stakeholder</h2>
+                <ul>
+                    <li class="fragment">Matriks Analisis Stakeholder</li>
+                    <li class="fragment">Grid Kekuatan-Minat</li>
+                    <li class="fragment">Curah Pendapat</li>
+                    <li class="fragment">Wawancara</li>
+                    <li class="fragment">Analisis Dokumen</li>
+                </ul>
+            </section>
+
+            <!-- Stakeholder Analysis Matrix -->
+            <section>
+                <h2>Matriks Analisis Stakeholder</h2>
+                <div class="stakeholder-matrix">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stakeholder</th>
+                                <th>Peran</th>
+                                <th>Pengaruh</th>
+                                <th>Minat</th>
+                                <th>Kebutuhan Komunikasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pustakawan</td>
+                                <td>Pengguna Akhir</td>
+                                <td>Tinggi</td>
+                                <td>Tinggi</td>
+                                <td>Update berkala</td>
+                            </tr>
+                            <tr>
+                                <td>Manajer Perpustakaan</td>
+                                <td>Pemilik Bisnis</td>
+                                <td>Sangat Tinggi</td>
+                                <td>Sangat Tinggi</td>
+                                <td>Laporan mingguan</td>
+                            </tr>
+                            <tr>
+                                <td>Dukungan TI</td>
+                                <td>Teknis</td>
+                                <td>Sedang</td>
+                                <td>Sedang</td>
+                                <td>Spesifikasi teknis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Power-Interest Grid -->
+            <section>
+                <h2>Grid Kekuatan-Minat</h2>
+                <div class="power-interest-grid">
+                    <div class="grid-cell high-power-high-interest">
+                        <h4>Kekuatan Tinggi, Minat Tinggi</h4>
+                        <p>Kelola dengan ketat</p>
+                    </div>
+                    <div class="grid-cell high-power-low-interest">
+                        <h4>Kekuatan Tinggi, Minat Rendah</h4>
+                        <p>Jaga kepuasan</p>
+                    </div>
+                    <div class="grid-cell low-power-high-interest">
+                        <h4>Kekuatan Rendah, Minat Tinggi</h4>
+                        <p>Jaga informasi</p>
+                    </div>
+                    <div class="grid-cell low-power-low-interest">
+                        <h4>Kekuatan Rendah, Minat Rendah</h4>
+                        <p>Pantau</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sumber Kebutuhan Berdasarkan Jenis -->
+            <section>
+                <h2>Sumber Kebutuhan Berdasarkan Jenis</h2>
+                <ul>
+                    <li class="fragment"><strong>Kebutuhan Fungsional</strong>
+                        <ul>
+                            <li>Pengguna Akhir - Bagaimana sistem digunakan</li>
+                            <li>Pemilik Proses Bisnis - Aturan bisnis</li>
+                            <li>Petugas Kepatuhan - Regulasi dan standar</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Kebutuhan Non-Fungsional</strong>
+                        <ul>
+                            <li>Departemen TI - Kinerja, keamanan, skalabilitas</li>
+                            <li>Tim Keamanan - Kebutuhan keamanan</li>
+                            <li>Tim Operasi - Kemudahan pemeliharaan, ketersediaan</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Business Requirements -->
+            <section>
+                <h2>Kebutuhan Bisnis</h2>
+                <ul>
+                    <li class="fragment"><strong>Manajemen</strong> - Tujuan bisnis</li>
+                    <li class="fragment"><strong>Keuangan</strong> - Keterbatasan anggaran</li>
+                    <li class="fragment"><strong>Hukum</strong> - Kebutuhan kepatuhan</li>
+                </ul>
+            </section>
+
+            <!-- Exercise 1 -->
+            <section>
+                <h2>Latihan Praktis</h2>
+                <div class="exercise-box">
+                    <h4>Latihan 1: Pemetaan Stakeholder</h4>
+                    <p><strong>Tugas:</strong> Identifikasi dan mapping stakeholder untuk proyek "Sistem Manajemen Perpustakaan Digital"</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Curah pendapat semua stakeholder yang terlibat</li>
+                        <li>Kategorikan stakeholder (Internal/Eksternal)</li>
+                        <li>Buat Grid Kekuatan-Minat</li>
+                        <li>Tentukan strategi komunikasi untuk setiap stakeholder</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section>
+                <div class="exercise-box">
+                    <h4>Latihan 2: Analisis Sumber Kebutuhan</h4>
+                    <p><strong>Tugas:</strong> Analisis sumber kebutuhan berdasarkan jenis kebutuhan</p>
+                    
+                    <h5>Langkah:</h5>
+                    <ol>
+                        <li>Identifikasi stakeholder untuk kebutuhan fungsional</li>
+                        <li>Identifikasi stakeholder untuk kebutuhan non-fungsional</li>
+                        <li>Identifikasi stakeholder untuk kebutuhan bisnis</li>
+                        <li>Buat pemetaan stakeholder-kebutuhan</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Proyek Integrasi -->
+            <section>
+                <h2>Proyek Integrasi: Analisis Stakeholder</h2>
+                <p>Stakeholder untuk <strong>Sistem Perpustakaan Digital</strong>:</p>
+            </section>
+
+            <!-- Internal Stakeholders -->
+            <section>
+                <h2>Stakeholder Internal</h2>
+                <div class="stakeholder-card">
+                    <h4>1. Pustakawan (Pengguna Akhir)</h4>
+                    <p><strong>Kebutuhan:</strong> Kemudahan mengelola koleksi, pencarian buku</p>
+                    <p><strong>Pengaruh:</strong> Sedang, <strong>Minat:</strong> Tinggi</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>2. Manajer Perpustakaan (Pemilik Bisnis)</h4>
+                    <p><strong>Kebutuhan:</strong> Laporan statistik, monitoring penggunaan</p>
+                    <p><strong>Pengaruh:</strong> Tinggi, <strong>Minat:</strong> Tinggi</p>
+                </div>
+            </section>
+
+            <!-- More Internal Stakeholders -->
+            <section>
+                <div class="stakeholder-card">
+                    <h4>3. Dukungan TI (Teknis)</h4>
+                    <p><strong>Kebutuhan:</strong> Kemudahan pemeliharaan, keamanan</p>
+                    <p><strong>Pengaruh:</strong> Sedang, <strong>Minat:</strong> Sedang</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>4. Mahasiswa/Anggota (Pengguna Akhir)</h4>
+                    <p><strong>Kebutuhan:</strong> Pencarian buku, pemesanan, riwayat</p>
+                    <p><strong>Pengaruh:</strong> Rendah, <strong>Minat:</strong> Tinggi</p>
+                </div>
+            </section>
+
+            <!-- External Stakeholders -->
+            <section>
+                <h2>Stakeholder Eksternal</h2>
+                <div class="stakeholder-card">
+                    <h4>1. Penerbit (Pemasok)</h4>
+                    <p><strong>Kebutuhan:</strong> Metadata buku, integrasi ISBN</p>
+                    <p><strong>Pengaruh:</strong> Rendah, <strong>Minat:</strong> Rendah</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>2. Pemerintah (Regulasi)</h4>
+                    <p><strong>Kebutuhan:</strong> Kepatuhan dengan standar perpustakaan</p>
+                    <p><strong>Pengaruh:</strong> Tinggi, <strong>Minat:</strong> Rendah</p>
+                </div>
+            </section>
+
+            <!-- Communication Plan -->
+            <section>
+                <h2>Rencana Komunikasi</h2>
+                <ul>
+                    <li class="fragment"><strong>Laporan Mingguan</strong> - Manajer Perpustakaan</li>
+                    <li class="fragment"><strong>Update Bulanan</strong> - Dukungan TI</li>
+                    <li class="fragment"><strong>Sesi Umpan Balik Pengguna</strong> - Pustakawan, Mahasiswa</li>
+                    <li class="fragment"><strong>Tinjauan Triwulan</strong> - Manajemen</li>
+                </ul>
+            </section>
+
+            <!-- Deliverables -->
+            <section>
+                <h2>Deliverables Unit 2</h2>
+                <div class="deliverables">
+                    <ol>
+                        <li><strong>Daftar Stakeholder</strong> - Daftar lengkap stakeholder</li>
+                        <li><strong>Grid Kekuatan-Minat</strong> - Visualisasi stakeholder</li>
+                        <li><strong>Rencana Komunikasi</strong> - Strategi komunikasi</li>
+                        <li><strong>Matriks Sumber Kebutuhan</strong> - Pemetaan stakeholder dengan jenis kebutuhan</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Assessment Criteria -->
+            <section>
+                <h2>Assessment Criteria</h2>
+                <div class="assessment">
+                    <ul class="checklist">
+                        <li>Mampu mengidentifikasi minimal 8 stakeholder</li>
+                        <li>Mampu membuat Grid Kekuatan-Minat</li>
+                        <li>Mampu menganalisis pengaruh dan minat stakeholder</li>
+                        <li>Mampu membuat rencana komunikasi</li>
+                        <li>Mampu memetakan stakeholder dengan jenis kebutuhan</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section>
+                <h2>Referensi</h2>
+                <ul>
+                    <li><a href="https://www.pmi.org/learning/library/stakeholder-analysis-project-success-6080" target="_blank">Stakeholder Analysis Techniques</a></li>
+                    <li><a href="https://www.ireb.org/" target="_blank">Requirements Engineering Best Practices</a></li>
+                </ul>
+            </section>
+
+            <!-- Navigation -->
+            <section class="title-slide">
+                <h2>Navigation</h2>
+                <p><a href="unit-01-metodologi-pengembangan.html">← Unit 1 - Metodologi Pengembangan</a></p>
+                <p><a href="unit-03-teknik-elisitasi.html">Unit 3 - Teknik Elisitasi →</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
